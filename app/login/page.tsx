@@ -2,6 +2,13 @@ import Link from 'next/link'
 import { headers, cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
+import Sidebar from "@/components/Sidebar";
+import { GoHome, GoHomeFill } from "react-icons/go";
+import { RiLoginBoxFill, RiLoginBoxLine } from "react-icons/ri";
+import { SiGooglehome } from "react-icons/si";
+import { BiLogInCircle, BiSolidLogIn } from "react-icons/bi";
+import { SideNavItemType } from "@/types/sidebarProps";
+import { Header1Props } from "@/types/headerProps";
 
 export default function Login({
   searchParams,
@@ -50,6 +57,28 @@ export default function Login({
     }
 
     return redirect('/login?message=Check email to continue sign in process')
+  }
+
+  const googleSignIn = async () => {
+    'use server'
+    const origin = headers().get('origin')
+    const cookieStore = cookies()
+    const supabase = createClient(cookieStore)
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${origin}/auth/callback`
+      },
+    })
+
+    // console.log(data, error)
+
+    if (error) {
+      return redirect('/login?message=Could not authenticate user')
+    }
+
+    return redirect(data.url)
   }
 
   return (
@@ -107,11 +136,20 @@ export default function Login({
         >
           Sign Up
         </button>
+        
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
             {searchParams.message}
           </p>
         )}
+      </form>
+      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+      <button
+          formAction={googleSignIn}
+          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
+        >
+          Sign In with Google
+      </button>
       </form>
     </div>
   )

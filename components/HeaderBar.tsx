@@ -8,7 +8,9 @@ import { Bell, Sun, Moon } from "lucide-react";
 import ProfileButton from "./ui/ProfileButton";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Link from 'next/link';
+import Image from 'next/image';
 import { Header1Props } from "@/types/headerProps";
+import Logo from "@/public/rentez.svg";
 
 
 
