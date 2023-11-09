@@ -1,9 +1,11 @@
 /** @format */
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { usePathname } from "next/navigation";
+import Logo from "@/public/rentez.svg";
 
 // icons
 import { GoHome, GoHomeFill } from "react-icons/go";
@@ -42,11 +44,18 @@ export default function Sidebar({ sidebarItems }: Props) {
       )}
     >
       {/* logo */}
-      <HoverContainer>
+      {isSidebarOpen && (
+        <HoverContainer className="my-8">
         <Link href={"/"}>
-          <SiGooglehome className="text-4xl" />
+          {/* <SiGooglehome className="text-4xl" /> */}
+          <p className="font-bold text-5xl">
+                Rent{" "}
+                <span className="font-bold text-green-400 text-5xl">EZ</span>
+              </p>
         </Link>
       </HoverContainer>
+      )}
+      
 
       {/* sidenavitems */}
       {sidebarItems.map((d, i) => (
