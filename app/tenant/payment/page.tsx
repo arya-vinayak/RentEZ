@@ -1,30 +1,35 @@
 
-import { promises as fs } from "fs"
-import path from "path"
+import { promises as fs } from "fs";
+import path from "path";
 
-import Image from "next/image"
-import { z } from "zod"
+import Image from "next/image";
+import { z } from "zod";
 
-import { columns } from "./components/columns"
-import { DataTable } from "./components/data-table"
-import { PSchema } from "./data/schema"
-import { PaymentCard } from "@/components/PaymentCard"
-
-
+import { columns } from "./components/columns";
+import { DataTable } from "./components/data-table";
+import { PSchema } from "./data/schema";
+import { PaymentCard } from "@/components/PaymentCard";
+import { Payment } from "./data/schema";
 
 // Simulate a database read for tasks.
 async function getTasks() {
   const data = await fs.readFile(
     path.join(process.cwd(), "/app/tenant/payment/data/payments.json")
-  )
+  );
 
-  const tasks = JSON.parse(data.toString())
+  const tasks = JSON.parse(data.toString());
 
-  return z.array(PSchema).parse(tasks)
+  return z.array(PSchema).parse(tasks);
 }
 
 export default async function TaskPage() {
-  const tasks = await getTasks()
+  
+    async function fetchTasks() {
+      const tasks = await getTasks();
+     return tasks
+    }
+    const tasks = await fetchTasks();
+  
 
   return (
     <>
@@ -57,8 +62,10 @@ export default async function TaskPage() {
           </div>
         </div>
         <DataTable data={tasks} columns={columns} />
-        <PaymentCard/>
+        <PaymentCard
+          payments={tasks}
+        />
       </div>
     </>
-  )
+  );
 }

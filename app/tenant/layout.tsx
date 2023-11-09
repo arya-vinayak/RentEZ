@@ -73,7 +73,6 @@ export default function RootLayout({
   }: {
     children: React.ReactNode;
   }) {
-    console.log(sidebarItmes)
     return (
         //   <main>
         //     <div className="flex h-screen overflow-hidden">

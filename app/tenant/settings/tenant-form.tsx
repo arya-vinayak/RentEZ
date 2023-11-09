@@ -25,7 +25,7 @@ const tenantFormSchema = z.object({
     contactNo: z.string().min(10, {
       message: "Contact number must be at least 10 characters.",
     }),
-    dob: z.date(),
+    dob: z.string(),
     password: z.string().min(6, {
       message: "Password must be at least 6 characters.",
     }),
