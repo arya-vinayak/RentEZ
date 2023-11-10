@@ -6,35 +6,35 @@ import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 import { z } from "zod";
 
-// Simulate a database read for tasks.
-// async function getTasks() {
-//   const data = await fs.readFile(
-//     path.join(process.cwd(), "/app/tenant/payment/data/payments.json")
-//   );
-
-//   const tasks = JSON.parse(data.toString());
-
-//   return z.array(PSchema).parse(tasks);
-// }
-
+//Simulate a database read for tasks.
 async function getTasks() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore);
-  const { data: tasks } = await supabase.from("payments").select();    //trasks is variable name, data is a property.
+  const data = await fs.readFile(
+    path.join(process.cwd(), "/app/tenant/payment/data/payments.json")
+  );
 
-  if (tasks !== null) {
-    const transformedTasks = tasks.map((task : any) => PSchema.parse({
-      date: String(task.payment_date),  
-      id: String(task.payment_id),       
-      cost: String(task.amount),         
-      status: String(task.payment_status),
-    }));
+  const tasks = JSON.parse(data.toString());
 
-    return transformedTasks;
-  }
-
-  return []; // Return an empty array if tasks is null
+  return z.array(PSchema).parse(tasks);
 }
+
+// async function getTasks() {
+//   const cookieStore = cookies()
+//   const supabase = createClient(cookieStore);
+//   const { data: tasks } = await supabase.from("payments").select();    //trasks is variable name, data is a property.
+
+//   if (tasks !== null) {
+//     const transformedTasks = tasks.map((task : any) => PSchema.parse({
+//       date: String(task.payment_date),  
+//       id: String(task.payment_id),       
+//       cost: String(task.amount),         
+//       status: String(task.payment_status),
+//     }));
+
+//     return transformedTasks;
+//   }
+
+//   return []; // Return an empty array if tasks is null
+// }
 
 
 //Export tasks data
