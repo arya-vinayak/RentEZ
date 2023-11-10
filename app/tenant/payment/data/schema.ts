@@ -3,7 +3,7 @@ import { z } from "zod";
 export const PSchema = z.object({
   date: z.string(),
   id: z.string(),
-  cost: z.number(),  
+  cost: z.string(),  
   status: z.string(),
   
 });

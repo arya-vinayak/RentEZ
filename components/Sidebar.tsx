@@ -34,8 +34,6 @@ type Props = {
 
 export default function Sidebar({ sidebarItems }: Props) {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
-  console.log(sidebarItems);
-
   return (
     <div
       className={cn(

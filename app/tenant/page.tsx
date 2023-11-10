@@ -14,6 +14,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
 import NotificationCard from "@/components/NotificationCard";
 import { Notification } from "@/types/Notification";
+import Loading from "./loading";
 
 export default function Tenant()
 {
@@ -70,6 +71,7 @@ export default function Tenant()
 
     return (
       <>
+
       <Breadcrumb pageName="Home" />
       <Card className="dark:bg-[20-14.3-4.1] text-[#FFFFFF]">
         <CardHeader>
