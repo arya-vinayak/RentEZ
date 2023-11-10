@@ -4,17 +4,13 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import Container from "./ui/container";
 import { Button } from "./ui/button";
-import { Bell, Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import ProfileButton from "./ui/ProfileButton";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import Link from 'next/link';
-import Image from 'next/image';
+
 import { Header1Props } from "@/types/headerProps";
 import Logo from "@/public/rentez.svg";
 
-
-
-const Header1 = ({  userType }: Header1Props) => {
+const Header1 = ({ userType }: Header1Props) => {
   const { theme, setTheme } = useTheme();
 
   const router = useRouter();
@@ -29,12 +25,12 @@ const Header1 = ({  userType }: Header1Props) => {
   return (
     <header className="sm:flex sm:justify-between py-3 px-4 border-b">
       <Container>
-        <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between w-full ">
-          <div className="flex items-center">
-            
+        <div className="relative px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row h-16 items-center justify-between w-full">
+          <div className="flex items-center mb-2 sm:mb-0">
+            {/* You can add your logo or other content here */}
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center ml-auto">
             <Button
               variant="ghost"
               size="icon"

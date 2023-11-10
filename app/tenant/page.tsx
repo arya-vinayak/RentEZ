@@ -1,6 +1,3 @@
-"use client";
-import { useEffect,useState } from "react";
-
 import {
   Card,
   CardContent,
@@ -8,88 +5,108 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-
 import NotificationCard from "@/components/NotificationCard";
 import { Notification } from "@/types/Notification";
-import Loading from "./loading";
+import { Visitor } from "@/types/Visitor";
+import VisitorCard from "@/components/VisitorCard";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function Tenant()
-{
+async function getNotifications() {
+  const tempData: Notification[] = [
+    {
+      announced_by: "John Doe",
+      date_of_announcement: new Date("Nov 5, 2023"),
+      announcement_message:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    },
+    {
+      announced_by: "Alice Smith",
+      date_of_announcement: new Date("Nov 6, 2023"),
+      announcement_message: "Corporis tenetur dolor quis facere neque quidem.",
+    },
 
-  const [announcements, setAnnouncements] = useState<Notification[]>([]);
-
-  useEffect(() => {
-    // Temporary data (you can replace this with your actual data)
-    const tempData:Array<Notification> = [
-      {
-        announced_by: 'John Doe',
-        date_of_announcement: 'Nov 5, 2023',
-        announcement_message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-      },
-      {
-        announced_by: 'Alice Smith',
-        date_of_announcement: 'Nov 6, 2023',
-        announcement_message: 'Corporis tenetur dolor quis facere neque quidem.',
-      },
-
-      // Add more announcement objects as needed
-      {
-        announced_by: 'John Doe',
-        date_of_announcement: 'Nov 5, 2023',
-        announcement_message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-      },
-      {
-        announced_by: 'Alice Smith',
-        date_of_announcement: 'Nov 6, 2023',
-        announcement_message: 'Corporis tenetur dolor quis facere neque quidem.',
-      },
-      {
-        announced_by: 'John Doe',
-        date_of_announcement: 'Nov 5, 2023',
-        announcement_message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem eaque labore nemo! Et, illum optio. Nesciunt, cumque, id quo iste quis ea iusto reprehenderit molestias fugit delectus mollitia quia harum dignissimos? Repellat soluta ipsa in, quam expedita laudantium illum voluptas assumenda minima magni voluptatem officia, quae temporibus corrupti rem placeat',
-      },
-      {
-        announced_by: 'Alice Smith',
-        date_of_announcement: 'Nov 6, 2023',
-        announcement_message: 'Corporis tenetur dolor quis facere neque quidem.',
-        
-      }
-    ];
-
-    setAnnouncements((prev: Notification[]) => {
-      // Update the announcements array based on the previous state (prev)
-      return [
-        ...tempData,  // You can use the previous announcements
-      ];
-    });
-
-  }, []);
-
-
-    return (
-      <>
-
-      <Breadcrumb pageName="Home" />
-      <Card className="dark:bg-[20-14.3-4.1] text-[#FFFFFF]">
-        <CardHeader>
-        <CardTitle className="text-black dark:text-white">Announcements</CardTitle>
-
-        </CardHeader>
-        <CardContent className="grid gap-6">
-        {announcements.map((announcement, index) => (
-        <NotificationCard
-          key={index}
-          announced_by={announcement.announced_by}
-          date_of_announcement={announcement.date_of_announcement}
-          announcement_message={announcement.announcement_message}
-        />
-      ))}
-
-        </CardContent>
-      </Card>
-    </>)
+    // Add more announcement objects as needed
+    {
+      announced_by: "John Doe",
+      date_of_announcement: new Date("Nov 5, 2023"),
+      announcement_message:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    },
+    {
+      announced_by: "Alice Smith",
+      date_of_announcement: new Date("Nov 6, 2023"),
+      announcement_message: "Corporis tenetur dolor quis facere neque quidem.",
+    },
+    {
+      announced_by: "John Doe",
+      date_of_announcement: new Date("Nov 5, 2023"),
+      announcement_message:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem eaque labore nemo! Et, illum optio. Nesciunt, cumque, id quo iste quis ea iusto reprehenderit molestias fugit delectus mollitia quia harum dignissimos? Repellat soluta ipsa in, quam expedita laudantium illum voluptas assumenda minima magni voluptatem officia, quae temporibus corrupti rem placeat",
+    },
+    {
+      announced_by: "Alice Smith",
+      date_of_announcement: new Date("Nov 6, 2023"),
+      announcement_message: "Corporis tenetur dolor quis facere neque quidem.",
+    },
+  ];
+  return tempData;
 }
 
+async function getVisitors() {
+  const tempData: Visitor[] = [
+    {
+      visitor_name: "John Doe",
+      date_of_visit: new Date("Nov 5, 2023"),
+    },
+    {
+      visitor_name: "Alice Smith",
+      date_of_visit: new Date("Nov 6, 2023"),
+    },
+
+    // Add more visitor objects as needed
+    {
+      visitor_name: "John Doe",
+      date_of_visit: new Date("Nov 5, 2023"),
+    },
+    {
+      visitor_name: "Alice Smith",
+      date_of_visit: new Date("Nov 6, 2023"),
+    },
+    {
+      visitor_name: "John Doe",
+      date_of_visit: new Date("Nov 5, 2023"),
+    },
+    {
+      visitor_name: "Alice Smith",
+      date_of_visit: new Date("Nov 6, 2023"),
+    },
+  ];
+  return tempData;
+}
+
+export default async function AnnouncementPage() {
+  const announcements = await getNotifications();
+  const visitors = await getVisitors();
+
+  return (
+    <>
+      <Breadcrumb pageName="Home" />
+
+      <Tabs defaultValue="announcements" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="announcements">Announcements</TabsTrigger>
+          <TabsTrigger value="visitors">Visitors</TabsTrigger>
+        </TabsList>
+        <TabsContent value="announcements" className="mx-auto space-y-4 ">
+          <NotificationCard notifications={announcements} />
+        </TabsContent>
+        <TabsContent value="visitors" className="mx-auto space-y-4">
+          <VisitorCard visitors={visitors} />
+        </TabsContent>
+      </Tabs>
+    </>
+  );
+}

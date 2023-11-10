@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { set, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -23,7 +23,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 const paymentSchema = z.object({
   date: z.string().min(10, {
@@ -58,15 +58,14 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
     maintenance_payment_status: "pending",
   };
 
-
   const register = useForm({
     resolver: zodResolver(paymentSchema),
     defaultValues: defaultValues,
   });
 
-  const onSubmit = (data:any) => {
+  const onSubmit = (data: any) => {
     console.log(data);
-   
+
     const newM = {
       id: data.id,
       date: data.date,
@@ -76,7 +75,6 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
       maintenance_payment_status: data.maintenance_payment_status,
     };
     setTasks((prevTasks: Maintenance[]) => [...prevTasks, newM]);
-  
   };
 
   return (
@@ -93,63 +91,72 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-1 items-center gap-4">
-          <Form {...register}>
-          <form onSubmit={register.handleSubmit(onSubmit)} className="space-y-8">
-
-            <FormField
-              control={register.control}
-              name="date"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Date</FormLabel>
-                  <FormControl>
-                    <Input type="date" placeholder="Date" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <Form {...register}>
+              <form
+                onSubmit={register.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
+                <FormField
+                  control={register.control}
+                  name="date"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Date</FormLabel>
+                      <FormControl>
+                        <Input type="date" placeholder="Date" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 <FormField
-              control={register.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input type="text" placeholder="Give a description" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                  control={register.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Give a description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <FormField
-              control={register.control}
-              name="cost"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Cost</FormLabel>
-                  <FormControl>
-                    <Input type="number" placeholder="Cost" {...field} onChange={event => field.onChange(+event.target.value)}
- />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
+                <FormField
+                  control={register.control}
+                  name="cost"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Cost</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Cost"
+                          {...field}
+                          onChange={(event) =>
+                            field.onChange(+event.target.value)
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <DialogFooter>
-        <Button type="submit">Add Request</Button>
-        </DialogFooter>
-          </form>
-        </Form>
+                <DialogFooter>
+                  <Button type="submit">Add Request</Button>
+                </DialogFooter>
+              </form>
+            </Form>
           </div>
         </div>
-        
       </DialogContent>
     </Dialog>
-    
   );
 }

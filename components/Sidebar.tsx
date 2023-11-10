@@ -17,8 +17,6 @@ import { PiNotepadFill, PiNotepad } from "react-icons/pi";
 import { VscSettingsGear } from "react-icons/vsc";
 import { SiGooglehome } from "react-icons/si";
 
-
-
 interface SideNavItemType {
   icon?: {
     icon: React.ReactNode;
@@ -44,16 +42,14 @@ export default function Sidebar({ sidebarItems }: Props) {
       {/* logo */}
       {isSidebarOpen && (
         <HoverContainer className="my-8">
-        <Link href={"/"}>
-          {/* <SiGooglehome className="text-4xl" /> */}
-          <p className="font-bold text-5xl">
-                Rent{" "}
-                <span className="font-bold text-green-400 text-5xl">EZ</span>
-              </p>
-        </Link>
-      </HoverContainer>
+          <Link href={"/"}>
+            {/* <SiGooglehome className="text-4xl" /> */}
+            <p className="font-bold text-5xl">
+              Rent <span className="font-bold text-green-400 text-5xl">EZ</span>
+            </p>
+          </Link>
+        </HoverContainer>
       )}
-      
 
       {/* sidenavitems */}
       {sidebarItems.map((d, i) => (
@@ -92,7 +88,7 @@ function SideNavItem({
   href,
   isSidebarOpen,
   icon,
-  label
+  label,
 }: SideNavItemType & { isSidebarOpen: boolean }) {
   const [animationParent] = useAutoAnimate();
   const pathname = usePathname();
@@ -124,7 +120,7 @@ function SideNavItem({
 
 function HoverContainer({
   children,
-  className
+  className,
 }: {
   children: React.ReactNode;
   className?: string;

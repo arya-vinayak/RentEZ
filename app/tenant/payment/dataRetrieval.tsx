@@ -1,10 +1,8 @@
-"use server"
+"use server";
 import { promises as fs } from "fs";
 import path from "path";
 import { z } from "zod";
 import { PSchema } from "./data/schema";
-
-
 
 // Simulate a database read for tasks.
 async function getTasks() {
@@ -22,4 +20,3 @@ export async function getData() {
   const data = await getTasks();
   return data;
 }
-

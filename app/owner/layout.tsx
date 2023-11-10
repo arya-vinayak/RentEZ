@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Header1 from "@/components/HeaderBar";
 import Sidebar from "@/components/Sidebar";
 
@@ -12,110 +12,101 @@ import { BiSolidUser, BiUser } from "react-icons/bi";
 import { PiNotepadFill, PiNotepad } from "react-icons/pi";
 import { VscSettingsGear } from "react-icons/vsc";
 import { SiGooglehome } from "react-icons/si";
-import {SideNavItemType} from "@/types/sidebarProps";
-import {Header1Props} from "@/types/headerProps";
-import {FaFileContract} from "react-icons/fa";
-import {LiaFileContractSolid} from "react-icons/lia";
+import { SideNavItemType } from "@/types/sidebarProps";
+import { Header1Props } from "@/types/headerProps";
+import { FaFileContract } from "react-icons/fa";
+import { LiaFileContractSolid } from "react-icons/lia";
 
 const sidebarItmes: SideNavItemType[] = [
   {
     icon: {
       icon: <GoHome />,
-      fillIcon: <GoHomeFill />
+      fillIcon: <GoHomeFill />,
     },
     label: "Home",
-    href: "/owner"
+    href: "/owner",
   },
   {
     icon: {
       icon: <PiNotepad />,
-      fillIcon: <PiNotepadFill />
+      fillIcon: <PiNotepadFill />,
     },
     label: "Payments",
-    href: "/owner/payment"
+    href: "/owner/payment",
   },
 
   {
     icon: {
       icon: <HiOutlineUsers />,
-      fillIcon: <HiUsers />
+      fillIcon: <HiUsers />,
     },
     label: "Maintenance",
-    href: "/owner/maintenance"
+    href: "/owner/maintenance",
   },
 
   {
     icon: {
       icon: <BiUser />,
-      fillIcon: <BiSolidUser />
+      fillIcon: <BiSolidUser />,
     },
     label: "Profile ",
-    href: "/owner/profile"
+    href: "/owner/profile",
   },
   {
     icon: {
       icon: <VscSettingsGear />,
-      fillIcon: <VscSettingsGear />
+      fillIcon: <VscSettingsGear />,
     },
     label: "Settings",
-    href: "/owner/settings"
+    href: "/owner/settings",
   },
   {
     icon: {
-      icon: <LiaFileContractSolid/>,
-      fillIcon: <FaFileContract/>
+      icon: <LiaFileContractSolid />,
+      fillIcon: <FaFileContract />,
     },
     label: "Contract",
-    href: "/owner/contract"
+    href: "/owner/contract",
   },
 ];
 
 const headerProps: Header1Props = {
- userType: "owner",
-  }
-
-
-
-
-
+  userType: "owner",
+};
 
 export default function RootLayout({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) {
-    return (
-        //   <main>
-        //     <div className="flex h-screen overflow-hidden">
-        //     <Header1 />
-        //     {children}
-        //   </main>
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
-        
-            <div className="flex h-screen overflow-hidden">
-              {/* <!-- ===== Sidebar Start ===== --> */}
-              <Sidebar sidebarItems={sidebarItmes}/>
-              {/* <!-- ===== Sidebar End ===== --> */}
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    //   <main>
+    //     <div className="flex h-screen overflow-hidden">
+    //     <Header1 />
+    //     {children}
+    //   </main>
+    <div className="dark:bg-boxdark-2 dark:text-bodydark">
+      <div className="flex h-screen overflow-hidden">
+        {/* <!-- ===== Sidebar Start ===== --> */}
+        <Sidebar sidebarItems={sidebarItmes} />
+        {/* <!-- ===== Sidebar End ===== --> */}
 
-              {/* <!-- ===== Content Area Start ===== --> */}
-              <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-                {/* <!-- ===== Header Start ===== --> */}
-                <Header1 {...headerProps}/>
-                {/* <!-- ===== Header End ===== --> */}
+        {/* <!-- ===== Content Area Start ===== --> */}
+        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+          {/* <!-- ===== Header Start ===== --> */}
+          <Header1 {...headerProps} />
+          {/* <!-- ===== Header End ===== --> */}
 
-                {/* <!-- ===== Main Content Start ===== --> */}
-                <main>
-                  <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-                    {children}
-                  </div>
-                </main>
-                {/* <!-- ===== Main Content End ===== --> */}
-              </div>
-              {/* <!-- ===== Content Area End ===== --> */}
+          {/* <!-- ===== Main Content Start ===== --> */}
+          <main>
+            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+              {children}
             </div>
-          
+          </main>
+          {/* <!-- ===== Main Content End ===== --> */}
         </div>
-    )
-
-
-  }
+        {/* <!-- ===== Content Area End ===== --> */}
+      </div>
+    </div>
+  );
+}
