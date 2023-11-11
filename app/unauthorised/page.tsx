@@ -1,3 +1,4 @@
+"use client";
 import { AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -7,8 +8,8 @@ import Lottie from "lottie-react";
 
 function unauthorised() {
   return (
-      <div className="grid grid-cols-12 gap-2 items-center justify-center">
-        <div className="flex h-screen items-center col-span-6">
+      <div className="grid grid-cols-8 gap-2 items-center justify-end mx-auto">
+        <div className="flex h-screen items-center col-span-2">
         <Alert variant="destructive" className="mx-auto">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
@@ -25,7 +26,7 @@ function unauthorised() {
       <div className="col-span-6">
       <Lottie
                 animationData={ghostError}
-                style={{ height: 600, width: 600 }}
+                style={{ height: 400, width: 400 }}
                 loop={true}
               />
       </div>

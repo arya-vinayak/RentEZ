@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import Header1 from "@/components/HeaderBar";
 import Sidebar from "@/components/Sidebar";
-
-
+import { useRouter } from "next/navigation";
+import { createClient } from "../../utils/supabase/client";
+import { useEffect } from "react";
 //icons
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { RiArrowLeftDoubleFill } from "react-icons/ri";
@@ -12,100 +13,104 @@ import { BiSolidUser, BiUser } from "react-icons/bi";
 import { PiNotepadFill, PiNotepad } from "react-icons/pi";
 import { VscSettingsGear } from "react-icons/vsc";
 import { SiGooglehome } from "react-icons/si";
-import {SideNavItemType} from "@/types/sidebarProps";
-import {Header1Props} from "@/types/headerProps";
-
+import { SideNavItemType } from "@/types/sidebarProps";
+import { Header1Props } from "@/types/headerProps";
 
 const sidebarItmes: SideNavItemType[] = [
   {
     icon: {
       icon: <GoHome />,
-      fillIcon: <GoHomeFill />
+      fillIcon: <GoHomeFill />,
     },
     label: "Home",
-    href: "/tenant"
+    href: "/tenant",
   },
   {
     icon: {
       icon: <PiNotepad />,
-      fillIcon: <PiNotepadFill />
+      fillIcon: <PiNotepadFill />,
     },
     label: "Payments",
-    href: "/tenant/payment"
+    href: "/tenant/payment",
   },
 
   {
     icon: {
       icon: <HiOutlineUsers />,
-      fillIcon: <HiUsers />
+      fillIcon: <HiUsers />,
     },
     label: "Maintenance",
-    href: "/tenant/maintenance"
+    href: "/tenant/maintenance",
   },
 
   {
     icon: {
       icon: <BiUser />,
-      fillIcon: <BiSolidUser />
+      fillIcon: <BiSolidUser />,
     },
     label: "Profile ",
-    href: "/tenant/profile"
+    href: "/tenant/profile",
   },
   {
     icon: {
       icon: <VscSettingsGear />,
-      fillIcon: <VscSettingsGear />
+      fillIcon: <VscSettingsGear />,
     },
     label: "Settings",
-    href: "/tenant/settings"
-  }
+    href: "/tenant/settings",
+  },
 ];
-
 
 const headerProps: Header1Props = {
   userType: "tenant",
-   }
-
-
+};
 
 export default function RootLayout({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) {
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const router = useRouter();
+  const supabase = createClient();
+  const isLoggedIn = async () => {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+    if (!session?.user) {
+      return router.push("/unauthorised");
+    }
+  };
+  useEffect(() => {
+    isLoggedIn();
+  }, []);
+  return (
+    //   <main>
+    //     <div className="flex h-screen overflow-hidden">
+    //     <Header1 />
+    //     {children}
+    //   </main>
+    <div className="dark:bg-boxdark-2 dark:text-bodydark">
+      <div className="flex h-screen overflow-hidden">
+        {/* <!-- ===== Sidebar Start ===== --> */}
+        <Sidebar sidebarItems={sidebarItmes} />
+        {/* <!-- ===== Sidebar End ===== --> */}
 
-    return (
-        //   <main>
-        //     <div className="flex h-screen overflow-hidden">
-        //     <Header1 />
-        //     {children}
-        //   </main>
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
-        
-            <div className="flex h-screen overflow-hidden">
-              {/* <!-- ===== Sidebar Start ===== --> */}
-              <Sidebar sidebarItems={sidebarItmes}/>
-              {/* <!-- ===== Sidebar End ===== --> */}
+        {/* <!-- ===== Content Area Start ===== --> */}
+        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+          {/* <!-- ===== Header Start ===== --> */}
+          <Header1 {...headerProps} />
+          {/* <!-- ===== Header End ===== --> */}
 
-              {/* <!-- ===== Content Area Start ===== --> */}
-              <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-                {/* <!-- ===== Header Start ===== --> */}
-                <Header1 {...headerProps}/>
-                {/* <!-- ===== Header End ===== --> */}
-
-                {/* <!-- ===== Main Content Start ===== --> */}
-                <main>
-                  <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-                    {children}
-                  </div>
-                </main>
-                {/* <!-- ===== Main Content End ===== --> */}
-              </div>
-              {/* <!-- ===== Content Area End ===== --> */}
+          {/* <!-- ===== Main Content Start ===== --> */}
+          <main>
+            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+              {children}
             </div>
-          
+          </main>
+          {/* <!-- ===== Main Content End ===== --> */}
         </div>
-    )
-
-
-  }
+        {/* <!-- ===== Content Area End ===== --> */}
+      </div>
+    </div>
+  );
+}

@@ -15,9 +15,8 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import NotificationCard from "@/components/NotificationCard";
 import { Notification } from "@/types/Notification";
 
-export default function Tenant()
-{
-
+export default function Tenant() {
+  
   const [announcements, setAnnouncements] = useState<Notification[]>([]);
 
   useEffect(() => {

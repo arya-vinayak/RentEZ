@@ -1,9 +1,9 @@
 "use client"
 import Header1 from "@/components/HeaderBar";
 import Sidebar from "@/components/Sidebar";
-
-//icons
-//icons
+import { useRouter } from "next/navigation";
+import { createClient } from "../../utils/supabase/client";
+import { useEffect } from "react";
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { RiArrowLeftDoubleFill } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
@@ -84,6 +84,19 @@ export default function RootLayout({
   }: {
     children: React.ReactNode;
   }) {
+    const router = useRouter();
+  const supabase = createClient();
+  const isLoggedIn = async () => {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+    if (!session?.user) {
+      return router.push("/unauthorised");
+    }
+  };
+  useEffect(() => {
+    isLoggedIn();
+  }, []);
     return (
         //   <main>
         //     <div className="flex h-screen overflow-hidden">
