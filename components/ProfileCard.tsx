@@ -1,14 +1,7 @@
 "use client";
 
 import Breadcrumb from "./Breadcrumbs/Breadcrumb";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Profile } from "@/types/Profile";
 
 export default function ProfileCard(tenantData: Profile) {
@@ -29,7 +22,7 @@ export default function ProfileCard(tenantData: Profile) {
                   {key.replace(/_/g, " ")}
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-300 sm:col-span-2 sm:mt-0">
-                  {tenantData[key]}
+                  {tenantData[key as keyof Profile]}
                 </dd>
               </div>
               {key !== "tenant_profile_pic" && (
