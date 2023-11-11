@@ -42,9 +42,7 @@ export default function Landing() {
   ];
   return (
     <div
-      className={`dark:bg-boxdark-2 dark:text-bodydark ${
-        theme === "dark" ? "dark" : ""
-      }`}
+      className={`dark:bg-boxdark-2 dark:text-bodydark}`}
     >
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
