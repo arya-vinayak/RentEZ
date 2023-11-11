@@ -17,7 +17,7 @@ import { Header1Props } from "@/types/headerProps";
 import personWalkin from "@/public/animations/person.json";
 import Lottie from "lottie-react";
 import Landing from "@/components/Landing";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 
 export default function Index() {
   return (

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import SignUpUserSteps from "@/components/SignUpUserSteps";
 // import Header from '@/components/Header'
 import { Button } from "@/components/ui/button";
@@ -14,34 +14,38 @@ import Lottie from "lottie-react";
 import Header from "./Header";
 
 export default function Landing() {
-    const sidebarItmes: SideNavItemType[] = [
-        {
-          icon: {
-            icon: <GoHome />,
-            fillIcon: <GoHomeFill />,
-          },
-          label: "Home",
-          href: "/",
-        },
-        {
-          icon: {
-            icon: <BiLogInCircle />,
-            fillIcon: <BiSolidLogIn />,
-          },
-          label: "Login",
-          href: "/login",
-        },
-        {
-          icon: {
-            icon: <RiLoginBoxLine />,
-            fillIcon: <RiLoginBoxFill />,
-          },
-          label: "Signup",
-          href: "/signup",
-        },
-      ];
-    return (
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
+  const sidebarItmes: SideNavItemType[] = [
+    {
+      icon: {
+        icon: <GoHome />,
+        fillIcon: <GoHomeFill />,
+      },
+      label: "Home",
+      href: "/",
+    },
+    {
+      icon: {
+        icon: <BiLogInCircle />,
+        fillIcon: <BiSolidLogIn />,
+      },
+      label: "Login",
+      href: "/login",
+    },
+    {
+      icon: {
+        icon: <RiLoginBoxLine />,
+        fillIcon: <RiLoginBoxFill />,
+      },
+      label: "Signup",
+      href: "/signup",
+    },
+  ];
+  return (
+    <div
+      className={`dark:bg-boxdark-2 dark:text-bodydark ${
+        theme === "dark" ? "dark" : ""
+      }`}
+    >
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
         <Sidebar sidebarItems={sidebarItmes} />
@@ -59,11 +63,25 @@ export default function Landing() {
                 Rent{" "}
                 <span className="font-bold text-green-400 text-8xl">EZ</span>
               </span>
-            <p className="text-2xl my-2 text-center text-gray-600">Making Renting Easy</p>
-            <div className="grid grid-cols-4 gap-2 items-center justify-center my-8">
-            <Button variant="outline" className="col-span-2 py-6 px-3 text-xl" asChild><Link href='/login'>Log In</Link></Button>
-            <Button variant="outline" className="col-span-2 py-6 px-3 text-xl bg-green-400 text-white" asChild><Link href='/signup'>Get Started</Link></Button>
-            </div>
+              <p className="text-2xl my-2 text-center text-gray-600">
+                Making Renting Easy
+              </p>
+              <div className="grid grid-cols-4 gap-2 items-center justify-center my-8">
+                <Button
+                  variant="outline"
+                  className="col-span-2 py-6 px-3 text-xl"
+                  asChild
+                >
+                  <Link href="/login">Log In</Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="col-span-2 py-6 px-3 text-xl bg-green-400 text-white"
+                  asChild
+                >
+                  <Link href="/signup">Get Started</Link>
+                </Button>
+              </div>
             </div>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 col-span-4">
               <Lottie
@@ -78,5 +96,5 @@ export default function Landing() {
         {/* <!-- ===== Content Area End ===== --> */}
       </div>
     </div>
-    )
-} 
+  );
+}
