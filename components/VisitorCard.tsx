@@ -15,7 +15,11 @@ function VisitorCard({ visitors }: { visitors: Visitor[] }) {
             {visitor.visitor_name}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-300 text-right mt-2">
-            {visitor.date_of_visit.toLocaleDateString()}
+            {visitor.date_of_visit.toLocaleDateString("en-US", {
+              month: "numeric",
+              day: "numeric",
+              year: "numeric",
+            })}
           </p>
         </div>
       ))}
