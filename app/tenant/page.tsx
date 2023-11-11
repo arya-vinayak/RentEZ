@@ -27,7 +27,6 @@ async function getNotifications() {
       date_of_announcement: new Date("Nov 6, 2023"),
       announcement_message: "Corporis tenetur dolor quis facere neque quidem.",
     },
-
     // Add more announcement objects as needed
     {
       announced_by: "John Doe",

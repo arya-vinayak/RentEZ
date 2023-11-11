@@ -1,9 +1,9 @@
 "use client";
 import Header1 from "@/components/HeaderBar";
 import Sidebar from "@/components/Sidebar";
-
-//icons
-//icons
+import { useRouter } from "next/navigation";
+import { createClient } from "../../utils/supabase/client";
+import { useEffect } from "react";
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { RiArrowLeftDoubleFill } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
@@ -75,22 +75,35 @@ const headerProps: Header1Props = {
 };
 
 export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    //   <main>
-    //     <div className="flex h-screen overflow-hidden">
-    //     <Header1 />
-    //     {children}
-    //   </main>
-    <div className="dark:bg-boxdark-2 dark:text-bodydark">
-      <div className="flex h-screen overflow-hidden">
-        {/* <!-- ===== Sidebar Start ===== --> */}
-        <Sidebar sidebarItems={sidebarItmes} />
-        {/* <!-- ===== Sidebar End ===== --> */}
-
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    const router = useRouter();
+    const supabase = createClient();
+    const isLoggedIn = async () => {
+    const {
+        data: { session }
+      } = await supabase.auth.getSession();
+     if (!session?.user) {
+        return router.push("/unauthorised");
+      }
+    };
+    useEffect(() => {
+      isLoggedIn();
+    }, []);
+    return (
+        //   <main>
+        //     <div className="flex h-screen overflow-hidden">
+        //     <Header1 />
+        //     {children}
+        //   </main>
+        <div className="dark:bg-boxdark-2 dark:text-bodydark">
+        
+            <div className="flex h-screen overflow-hidden">
+              {/* <!-- ===== Sidebar Start ===== --> */}
+              <Sidebar sidebarItems={sidebarItmes}/>
+              {/* <!-- ===== Sidebar End ===== --> */}
         {/* <!-- ===== Content Area Start ===== --> */}
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           {/* <!-- ===== Header Start ===== --> */}
