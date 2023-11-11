@@ -4,7 +4,6 @@ import SignUpUserSteps from "@/components/SignUpUserSteps";
 import { Button } from "@/components/ui/button";
 import Header1 from "@/components/HeaderBar";
 import Sidebar from "@/components/Sidebar";
-import ThemeButton from "@/components/ThemeButton";
 import Link from "next/link";
 import { Sun, Moon } from "lucide-react";
 //icons

@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,51 +8,134 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import ContractCards from "@/components/ContractCard";
+import { Contract } from "@/types/Contract";
 
-export default function CardWithForm() {
+
+
+
+
+export default function Contracts() {
+  // useEffect(() => {
+  //   // Fetch PDF URL from Supabase
+  //   const fetchPdfUrl = async () => {
+  //     try {
+  //       const { data, error } = await supabase
+  //         .from("your_pdf_table")
+  //         .select("pdf_url")
+  //         .single();
+
+  //       if (error) {
+  //         throw error;
+  //       }
+
+  //       setPdfUrl(data.pdf_url);
+  //     } catch (error) {
+  //       console.error("Error fetching PDF URL:", error.message);
+  //     }
+  //   };
+
+  const tempData:Contract[] = [{
+    id: "TENANT-A302",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A303",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A304",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A305",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A306",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A307",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A308",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A309",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A310",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A311",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A312",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A313",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A314",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A315",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A316",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A317",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A318",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A319",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A320",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A321",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A322",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A323",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A324",
+    pdfUrl:"/RESUME.pdf",
+  },
+  {
+    id: "TENANT-A325",
+    pdfUrl:"/RESUME.pdf",
+  }
+]
+
+  
+
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Framework</Label>
-              <Select>
-                <SelectTrigger id="framework">
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="next">Next.js</SelectItem>
-                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                  <SelectItem value="astro">Astro</SelectItem>
-                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
-      </CardFooter>
-    </Card>
+    <ContractCards contracts={tempData} />
   );
 }
