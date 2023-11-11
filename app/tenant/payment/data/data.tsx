@@ -1,19 +1,14 @@
-import {
-    CheckCircledIcon,
-    CircleIcon,
-  } from "@radix-ui/react-icons"
-
+import { CheckCircledIcon, CircleIcon } from "@radix-ui/react-icons";
 
 export const statuses = [
-    {
-        value: "pending",
-        label: "Pending",
-        icon: CircleIcon,
-      },
-      {
-        value: "success",
-        label: "Success",
-        icon: CheckCircledIcon,
-      }
-    
-]
+  {
+    value: "pending",
+    label: "Pending",
+    icon: CircleIcon,
+  },
+  {
+    value: "success",
+    label: "Success",
+    icon: CheckCircledIcon,
+  },
+];

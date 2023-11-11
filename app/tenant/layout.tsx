@@ -94,7 +94,6 @@ export default function RootLayout({
         {/* <!-- ===== Sidebar Start ===== --> */}
         <Sidebar sidebarItems={sidebarItmes} />
         {/* <!-- ===== Sidebar End ===== --> */}
-
         {/* <!-- ===== Content Area Start ===== --> */}
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           {/* <!-- ===== Header Start ===== --> */}

@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef } from "@tanstack/react-table";
 
-import { Badge } from "@/components/ui/badge"
-import { Checkbox } from "@/components/ui/checkbox"
-import { pstatuses, statuses } from "../data/data"
-import { Maintain } from "../data/schema"
-import { DataTableColumnHeader } from "./data-table-column-header"
-import { DataTableRowActions } from "./data-table-row-actions"
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import { pstatuses, statuses } from "../data/data";
+import { Maintain } from "../data/schema";
+import { DataTableColumnHeader } from "./data-table-column-header";
+import { DataTableRowActions } from "./data-table-row-actions";
 
 export const columns: ColumnDef<Maintain>[] = [
   {
@@ -46,7 +46,9 @@ export const columns: ColumnDef<Maintain>[] = [
       <DataTableColumnHeader column={column} title="Title" />
     ),
     cell: ({ row }) => {
-      const label = pstatuses.find((label) => label.value === row.original.label)
+      const label = pstatuses.find(
+        (label) => label.value === row.original.label
+      );
 
       return (
         <div className="flex space-x-2">
@@ -55,7 +57,7 @@ export const columns: ColumnDef<Maintain>[] = [
             {row.getValue("description")}
           </span>
         </div>
-      )
+      );
     },
   },
   {
@@ -75,10 +77,10 @@ export const columns: ColumnDef<Maintain>[] = [
     cell: ({ row }) => {
       const status = statuses.find(
         (status) => status.value === row.getValue("maintenance_status")
-      )
+      );
 
       if (!status) {
-        return null
+        return null;
       }
 
       return (
@@ -88,10 +90,10 @@ export const columns: ColumnDef<Maintain>[] = [
           )}
           <span>{status.label}</span>
         </div>
-      )
+      );
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+      return value.includes(row.getValue(id));
     },
   },
   {
@@ -102,10 +104,10 @@ export const columns: ColumnDef<Maintain>[] = [
     cell: ({ row }) => {
       const status = pstatuses.find(
         (status) => status.value === row.getValue("maintenance_payment_status")
-      )
+      );
 
       if (!status) {
-        return null
+        return null;
       }
 
       return (
@@ -115,14 +117,14 @@ export const columns: ColumnDef<Maintain>[] = [
           )}
           <span>{status.label}</span>
         </div>
-      )
+      );
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+      return value.includes(row.getValue(id));
     },
   },
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
-]
+];

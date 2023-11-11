@@ -17,10 +17,10 @@ function unauthorised() {
             Your session has expired. Please log in again.
           </AlertDescription>
           <div className="flex justify-center p-2 my-2">
-        <Button asChild variant="outline" className="w-full">
-          <Link href="/login">Login</Link>
-        </Button>
-      </div>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/login">Login</Link>
+            </Button>
+          </div>
         </Alert>
       </div>
       <div className="col-span-6">
@@ -31,6 +31,7 @@ function unauthorised() {
               />
       </div>
       </div>
+    </div>
   );
 }
 

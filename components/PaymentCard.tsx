@@ -1,6 +1,6 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +15,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { CardTitle, CardContent, Card, CardHeader } from "@/components/ui/card";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
 
 const paymentSchema = z.object({
   id: z.string().min(10, {
@@ -30,23 +40,23 @@ const paymentSchema = z.object({
 type Payment = {
   id: string;
   date: string;
-  cost: number;
+  cost: string;
   status: string;
 };
 
 type PaymentCardProps = {
   payments?: Payment[];
+  setTasks?: any;
 };
 
-export function PaymentCard({ payments }: PaymentCardProps) {
+export function PaymentCard({ payments,setTasks }: PaymentCardProps) {
   const defaultValues = {
     id: "",
     date: "",
-    cost: 10000,
+    cost: "NULL",
     status: "pending",
   };
 
-  const [pays, setPays] = useState<Payment[]>(payments || []);
 
   const register = useForm({
     resolver: zodResolver(paymentSchema),
@@ -55,23 +65,32 @@ export function PaymentCard({ payments }: PaymentCardProps) {
 
   const onSubmit = (data:any) => {
     console.log(data);
-    const newPayment = {
+   
+    const newPayment: Payment = {
       id: data.id,
       date: data.date,
       cost: data.cost,
       status: data.status,
     };
-    setPays([...pays, newPayment]);
+    setTasks((prevTasks: Payment[]) => [...prevTasks, newPayment]);
   
   };
 
   return (
-    <Card className="dark:bg-[20-14.3-4.1] mt-7">
-      <CardHeader>
-        <CardTitle className="text-black dark:text-white">Make Payment</CardTitle>
-      </CardHeader>
-      <CardContent className="grid gap-6">
-        <Form {...register}>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Complete a Payment here</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Make a payment</DialogTitle>
+          <DialogDescription>
+            Clear you rental payments here.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-1 items-center gap-4">
+          <Form {...register}>
           <form onSubmit={register.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={register.control}
@@ -114,11 +133,18 @@ export function PaymentCard({ payments }: PaymentCardProps) {
                 </FormItem>
               )}
             />
-
-            <Button type="submit">Pay</Button>
+            <DialogFooter>
+        <Button type="submit">Pay</Button>
+        </DialogFooter>
           </form>
-        </Form>
-      </CardContent>
-    </Card>
+        </Form> 
+          </div>
+        </div>
+        
+      </DialogContent>
+    </Dialog>
+    
   );
 }
+
+

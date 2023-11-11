@@ -1,10 +1,6 @@
-
 import { promises as fs } from "fs"
 import path from "path"
-
-import Image from "next/image"
 import { z } from "zod"
-
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
 import { PSchema } from "./data/schema"
@@ -27,22 +23,6 @@ export default async function TaskPage() {
 
   return (
     <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/tasks-light.png"
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/tasks-dark.png"
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="hidden dark:block"
-        />
-      </div>
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div className="flex items-center justify-between space-y-2">
           <div>
@@ -56,16 +36,6 @@ export default async function TaskPage() {
           </div>
         </div>
         <DataTable data={tasks} columns={columns} />
-
-        {/* <Card className="dark:bg-[20-14.3-4.1]  mt-7">
-        <CardHeader>
-        <CardTitle className="text-black dark:text-white">Update Profile Picture</CardTitle>
-
-        </CardHeader>
-        <CardContent className="grid gap-6">
-        <ProfilePic/>
-        </CardContent>
-      </Card> */}
       </div>
     </>
   )
