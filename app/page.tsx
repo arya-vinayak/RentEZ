@@ -17,10 +17,10 @@ import { Header1Props } from "@/types/headerProps";
 import personWalkin from "@/public/animations/person.json";
 import Lottie from "lottie-react";
 import Landing from "@/components/Landing";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 
 export default function Index() {
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
   return (
     // <div className="flex-1 w-full flex flex-col gap-20 items-center ">
     //   <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
@@ -36,11 +36,12 @@ export default function Index() {
     //   </footer>
     // </div>
       
-    <div
-      className={`dark:bg-boxdark-2 dark:text-bodydark ${
-        theme === "dark" ? "dark" : ""
-      }`}
-    >
+    // <div
+    //   className={`dark:bg-boxdark-2 dark:text-bodydark ${
+    //     theme === "dark" ? "dark" : ""
+    //   }`}
+    // >
+    <div>
       <AuthButton />
       <Landing />
     </div>

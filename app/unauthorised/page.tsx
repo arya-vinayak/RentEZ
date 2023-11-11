@@ -8,13 +8,14 @@ import Lottie from "lottie-react";
 
 function unauthorised() {
   return (
-      <div className="grid grid-cols-8 gap-2 items-center justify-end mx-auto">
-        <div className="flex h-screen items-center col-span-2">
+      <div className="flex gap-4 items-center justify-center mx-auto">
+        <div className="flex h-screen items-center">
         <Alert variant="destructive" className="mx-auto">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>
-            Your session has expired. Please log in again.
+            You are not authorised to view this page. <br />
+            Please login to continue.
           </AlertDescription>
           <div className="flex justify-center p-2 my-2">
             <Button asChild variant="outline" className="w-full">
@@ -23,15 +24,14 @@ function unauthorised() {
           </div>
         </Alert>
       </div>
-      <div className="col-span-6">
+      <div className="">
       <Lottie
                 animationData={ghostError}
-                style={{ height: 400, width: 400 }}
+                style={{ height: 250, width: 250 }}
                 loop={true}
               />
       </div>
       </div>
-    </div>
   );
 }
 
