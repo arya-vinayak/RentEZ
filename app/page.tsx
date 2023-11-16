@@ -16,9 +16,21 @@ import { Header1Props } from "@/types/headerProps";
 import personWalkin from "@/public/animations/person.json";
 import Lottie from "lottie-react";
 import Landing from "@/components/Landing";
+import { headers, cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/server'
 // import { useTheme } from "next-themes";
 
-export default function Index() {
+export default async function Index() {
+  const cookieStore = cookies();
+  // const headerStore = headers();
+  const supabase = createClient(cookieStore);
+  const { data: {session} } = await supabase.auth.getSession();
+  let role = null;
+  if(session) {
+    const uid = session?.user?.id;
+    const { data } = await supabase.from("users").select("role").eq("id", uid).single();
+    role = data?.role;
+  }
   return (
     // <div className="flex-1 w-full flex flex-col gap-20 items-center ">
     //   <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
@@ -38,7 +50,7 @@ export default function Index() {
       className={`dark:bg-boxdark-2 dark:text-bodydark`}
     >
       <AuthButton />
-      <Landing />
+      <Landing userRole={role} />
     </div>
   );
 }

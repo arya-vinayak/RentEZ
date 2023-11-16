@@ -13,8 +13,22 @@ export async function GET(request: Request) {
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
     await supabase.auth.exchangeCodeForSession(code)
+    const { data:{session}} = await supabase.auth.getSession()
+    // console.log('session', session)
+    const uid = session?.user?.id
+    const {data} = await supabase.from("users").select("role").eq("id", uid).single()
+    if (!data) {
+      const redirectUrl = new URL(requestUrl.origin + '/signup')
+      return NextResponse.redirect(redirectUrl.href)
+    }
+    const role = data.role
+    console.log('role', role)
+    const redirectUrl = new URL(requestUrl.origin + '/' + role)
   }
 
   // URL to redirect to after sign in process completes
+  // redirect tenant to /tenant, admin to /admin, owner to /owner
+  // get user uid
+  
   return NextResponse.redirect(requestUrl.origin)
 }

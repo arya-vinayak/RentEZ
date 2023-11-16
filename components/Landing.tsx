@@ -1,7 +1,9 @@
 "use client";
+import { LandingProps } from "@/types/Landing";
 import SignUpUserSteps from "@/components/SignUpUserSteps";
 // import Header from '@/components/Header'
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
 //icons
@@ -12,8 +14,20 @@ import { SideNavItemType } from "@/types/sidebarProps";
 import personWalkin from "@/public/animations/person.json";
 import Lottie from "lottie-react";
 import Header from "./Header";
+import { createClient } from "@/utils/supabase/client";
 
-export default function Landing() {
+async function getRole() {
+  const supabase = createClient();
+  const { data: {session} } = await supabase.auth.getSession();
+  if(!session) return null;
+  const uid = session?.user?.id;
+  const { data } = await supabase.from("users").select("role").eq("id", uid).single();
+  return data;
+}
+
+
+export default function Landing({ userRole }: LandingProps) {
+  const homeUrl = userRole ? `/${userRole}` : "/";
   const sidebarItmes: SideNavItemType[] = [
     {
       icon: {
@@ -21,7 +35,7 @@ export default function Landing() {
         fillIcon: <GoHomeFill />,
       },
       label: "Home",
-      href: "/",
+      href: homeUrl,
     },
     {
       icon: {
