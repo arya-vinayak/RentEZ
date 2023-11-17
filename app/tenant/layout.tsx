@@ -6,15 +6,15 @@ import { createClient } from "../../utils/supabase/client";
 import { useEffect } from "react";
 //icons
 import { GoHome, GoHomeFill } from "react-icons/go";
-import { RiArrowLeftDoubleFill } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { BiSolidUser, BiUser } from "react-icons/bi";
 import { PiNotepadFill, PiNotepad } from "react-icons/pi";
 import { VscSettingsGear } from "react-icons/vsc";
-import { SiGooglehome } from "react-icons/si";
 import { SideNavItemType } from "@/types/sidebarProps";
 import { Header1Props } from "@/types/headerProps";
+import { FaFileContract } from "react-icons/fa";
+import { LiaFileContractSolid } from "react-icons/lia";
 
 const sidebarItmes: SideNavItemType[] = [
   {
@@ -58,6 +58,14 @@ const sidebarItmes: SideNavItemType[] = [
     },
     label: "Settings",
     href: "/tenant/settings",
+  },
+  {
+    icon: {
+      icon: <LiaFileContractSolid />,
+      fillIcon: <FaFileContract />,
+    },
+    label: "Contract",
+    href: "/tenant/contract",
   },
 ];
 

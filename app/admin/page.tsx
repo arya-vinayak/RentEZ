@@ -59,29 +59,41 @@ async function getVisitors() {
   const tempData: Visitor[] = [
     {
       visitor_name: "John Doe",
-      date_of_visit: new Date("Nov 5, 2023"),
+      date_of_visit: new Date("Nov 5, 2023").toISOString().slice(0, 10),
+      time_of_visit: new Date("Nov 5, 2023 10:30:00").toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+      flat_number: "101"
     },
     {
       visitor_name: "Alice Smith",
-      date_of_visit: new Date("Nov 6, 2023"),
+      date_of_visit: new Date("Nov 6, 2023").toISOString().slice(0, 10),
+      time_of_visit: new Date("Nov 6, 2023 11:00:00").toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+      flat_number: "102"
     },
 
     // Add more visitor objects as needed
     {
       visitor_name: "John Doe",
-      date_of_visit: new Date("Nov 5, 2023"),
+      date_of_visit: new Date("Nov 5, 2023").toISOString().slice(0, 10),
+      time_of_visit: new Date("Nov 5, 2023 14:30:00").toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+      flat_number: "103"
     },
     {
       visitor_name: "Alice Smith",
-      date_of_visit: new Date("Nov 6, 2023"),
+      date_of_visit: new Date("Nov 6, 2023").toISOString().slice(0, 10),
+      time_of_visit: new Date("Nov 6, 2023 15:00:00").toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+      flat_number: "104"
     },
     {
       visitor_name: "John Doe",
-      date_of_visit: new Date("Nov 5, 2023"),
+      date_of_visit: new Date("Nov 5, 2023").toISOString().slice(0, 10),
+      time_of_visit: new Date("Nov 5, 2023 18:30:00").toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+      flat_number: "105"
     },
     {
       visitor_name: "Alice Smith",
-      date_of_visit: new Date("Nov 6, 2023"),
+      date_of_visit: new Date("Nov 6, 2023").toISOString().slice(0, 10),
+      time_of_visit: new Date("Nov 6, 2023 19:00:00").toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+      flat_number: "106"
     },
   ];
   return tempData;

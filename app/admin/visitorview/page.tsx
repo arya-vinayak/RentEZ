@@ -3,7 +3,7 @@ import Image from "next/image";
 import {columns} from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { VisitorAdd } from "@/components/VisitorAdd";
-import { Contract } from "@/types/Contract";
+import { Visitor } from "@/types/Visitor";
 import { getData } from "./dataRetrieval";
 import { useEffect, useState } from "react";
 
@@ -14,10 +14,10 @@ async function getTasks() {
 }
 
 export default function TasksPage() {
-  const [contracts, setContracts] = useState<Contract[]>([]);
+  const [visitors, setVisitors] = useState<Visitor[]>([]);
 
   useEffect(() => {
-    getTasks().then((contracts) => setContracts(contracts));
+    getTasks().then((visitors) => setVisitors(visitors));
   }, []);
 
   return (
@@ -29,8 +29,8 @@ export default function TasksPage() {
           </h2>
          
         </div>
-        <DataTable data={contracts} columns={columns} />
-        
+        <DataTable data={visitors} columns={columns} />
+        <VisitorAdd setVisitors={setVisitors} />
       </div>
     </>
   );

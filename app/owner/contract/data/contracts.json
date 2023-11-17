@@ -1,0 +1,16 @@
+[
+    {
+        "tenant_id": "TENANT-A302",
+        "owner_id": "OWNER-001",
+        "start_date": "2022-01-01",
+        "end_date": "2022-12-31",
+        "pdfUrl": "/RESUME.pdf"
+    },
+    {
+        "tenant_id": "TENANT-A303",
+        "owner_id": "OWNER-002",
+        "start_date": "2022-02-01",
+        "end_date": "2022-07-31",
+        "pdfUrl": "/RESUME.pdf"
+    }
+]

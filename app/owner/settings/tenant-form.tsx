@@ -38,7 +38,7 @@ export function TenantForm() {
       name: "",
       email: "",
       contactNo: "",
-      dob: "",
+      dob: new Date(),
       password: "",
     },
   });

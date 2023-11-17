@@ -62,7 +62,7 @@ export default function ContractCards({
               </svg>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{contract.id}</div>
+              <div className="text-2xl font-bold">{contract.tenant_id}</div>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="outline">View PDF</Button>

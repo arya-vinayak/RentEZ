@@ -1,9 +1,8 @@
 "use client";
-import Image from "next/image";
 import {columns} from "./components/columns";
 import { DataTable } from "./components/data-table";
-import { VisitorAdd } from "@/components/VisitorAdd";
-import { Contract } from "@/types/Contract";
+import { AnnouncementAdd } from "@/components/AnnoucementAdd";
+import { Announcement } from "@/types/Announcements";
 import { getData } from "./dataRetrieval";
 import { useEffect, useState } from "react";
 
@@ -14,10 +13,10 @@ async function getTasks() {
 }
 
 export default function TasksPage() {
-  const [contracts, setContracts] = useState<Contract[]>([]);
+  const [announcements,setAnnouncements] = useState<Announcement[]>([]);
 
   useEffect(() => {
-    getTasks().then((contracts) => setContracts(contracts));
+    getTasks().then((announcements) => setAnnouncements(announcements));
   }, []);
 
   return (
@@ -25,12 +24,12 @@ export default function TasksPage() {
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">
-           Visitors
+           Announcements
           </h2>
          
         </div>
-        <DataTable data={contracts} columns={columns} />
-        
+        <DataTable data={announcements} columns={columns} />
+        <AnnouncementAdd setAnnouncements = {setAnnouncements} />
       </div>
     </>
   );

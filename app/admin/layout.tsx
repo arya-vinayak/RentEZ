@@ -18,56 +18,72 @@ import { FaFileContract } from "react-icons/fa";
 import { LiaFileContractSolid } from "react-icons/lia";
 
 const sidebarItmes: SideNavItemType[] = [
-{
+  {
     icon: {
-        icon: <GoHome />,
-        fillIcon: <GoHomeFill />,
+      icon: <GoHome />,
+      fillIcon: <GoHomeFill />,
     },
     label: "Home",
     href: "/admin",
-},
-{
+  },
+  {
     icon: {
-        icon: <PiNotepad />,
-        fillIcon: <PiNotepadFill />,
+      icon: <PiNotepad />,
+      fillIcon: <PiNotepadFill />,
     },
     label: "Payments",
     href: "/admin/payment",
-},
+  },
 
-{
+  {
     icon: {
-        icon: <HiOutlineUsers />,
-        fillIcon: <HiUsers />,
+      icon: <HiOutlineUsers />,
+      fillIcon: <HiUsers />,
     },
     label: "Maintenance",
     href: "/admin/maintenance",
-},
+  },
 
-{
+  {
     icon: {
-        icon: <BiUser />,
-        fillIcon: <BiSolidUser />,
+      icon: <BiUser />,
+      fillIcon: <BiSolidUser />,
     },
     label: "Profile ",
     href: "/admin/profile",
-},
-{
+  },
+  {
     icon: {
-        icon: <VscSettingsGear />,
-        fillIcon: <VscSettingsGear />,
+      icon: <VscSettingsGear />,
+      fillIcon: <VscSettingsGear />,
     },
     label: "Settings",
     href: "/admin/settings",
-},
-{
+  },
+  {
     icon: {
-        icon: <LiaFileContractSolid />,
-        fillIcon: <FaFileContract />,
+      icon: <LiaFileContractSolid />,
+      fillIcon: <FaFileContract />,
     },
     label: "Contracts",
     href: "/admin/contract",
-},
+  },
+  {
+    icon: {
+      icon: <SiGooglehome />,
+      fillIcon: <SiGooglehome />,
+    },
+    label: "Visitor View",
+    href: "/admin/visitorview",
+  },
+  {
+    icon: {
+      icon: <SiGooglehome />,
+      fillIcon: <SiGooglehome />,
+    },
+    label: "Announcement Page",
+    href: "/admin/announcement",
+  },
 ];
 
 const headerProps: Header1Props = {
