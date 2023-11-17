@@ -4,8 +4,13 @@ import { TenantForm } from "./tenant-form";
 import Image from "next/image";
 import ProfilePic from "@/components/ProfilePic";
 import { CardTitle, CardContent, Card, CardHeader } from "@/components/ui/card";
+import { useContext } from "react";
+import UserContext from "@/contexts/userContext";
+import { userType } from "@/types/user";
 
 export default function DemoPage() {
+  const user = useContext(UserContext);
+  console.log(user);
   return (
     <>
       <Breadcrumb pageName="Settings" />

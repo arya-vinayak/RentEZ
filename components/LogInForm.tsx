@@ -28,12 +28,13 @@ const formSchema = z.object({
 });
 
 type Props = {
+  text: string;
   signIn: (data: FormData) => Promise<void>;
   googleSignIn: () => Promise<void>;
   message?: string;
 };
 
-const LogInForm = ({ signIn, googleSignIn, message }: Props) => {
+const LogInForm = ({ text, signIn, googleSignIn, message }: Props) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -87,7 +88,7 @@ const LogInForm = ({ signIn, googleSignIn, message }: Props) => {
             )}
           />
           <Button type="submit" className="bg-green-500 text-white text-md">
-            <Mail className="mr-2 h-4 w-4" /> Login with Email
+            <Mail className="mr-2 h-4 w-4" /> {text} with Email
           </Button>
         </form>
       </Form>

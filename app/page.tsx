@@ -47,9 +47,11 @@ export default async function Index() {
     // </div>
       
     <div
-      className={`dark:bg-boxdark-2 dark:text-bodydark`}
+      className={`dark:bg-boxdark-2 dark:text-bodydark min-h-screen flex flex-col `}
     >
+      <div>
       <AuthButton />
+      </div>
       <Landing userRole={role} />
     </div>
   );
