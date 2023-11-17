@@ -60,4 +60,4 @@ export default async function Index() {
       </div>
       <Landing userRole={role} />
     </div>
-  )}
+)}

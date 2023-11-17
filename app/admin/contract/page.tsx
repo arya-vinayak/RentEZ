@@ -25,7 +25,7 @@ export default function TasksPage() {
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">
-           Visitors
+           Contracts
           </h2>
          
         </div>
