@@ -7,22 +7,16 @@ import { Contract } from "@/types/Contract";
 import { getData } from "./dataRetrieval";
 import { useEffect, useState } from "react";
 
-
-
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "./components/data-table-column-header";
 import { DataTableRowActions } from "./components/data-table-row-actions";
-
+import { ContractAdd } from "@/components/ContractAdd";
 
 async function getTasks() {
   const data = await getData();
   return data;
 }
-
-
-
-
 
 export default function TasksPage() {
   const [contracts, setContracts] = useState<Contract[]>([]);
@@ -108,12 +102,14 @@ export default function TasksPage() {
     },
     {
       id: "actions",
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Options" />
+      ),
       cell: ({ row }) => (
         <DataTableRowActions row={row} onDeleteRow={handleDeleteRow} />
       ),
     },
   ];
-
 
   return (
     <>
@@ -126,6 +122,7 @@ export default function TasksPage() {
           columns={columns}
           onDeleteRow={handleDeleteRow}
         />
+        <ContractAdd setContracts={setContracts} />
       </div>
     </>
   );
