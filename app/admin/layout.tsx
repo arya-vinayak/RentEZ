@@ -16,6 +16,9 @@ import { SideNavItemType } from "@/types/sidebarProps";
 import { Header1Props } from "@/types/headerProps";
 import { FaFileContract } from "react-icons/fa";
 import { LiaFileContractSolid } from "react-icons/lia";
+import UserContext from "@/contexts/userContext"
+import { userType } from "@/types/user";
+import { useState } from "react";
 
 const sidebarItmes: SideNavItemType[] = [
   {
@@ -97,6 +100,7 @@ export default function RootLayout({
 }) {
   const router = useRouter();
   const supabase = createClient();
+  const [user, setUser] = useState<userType | null>(null);
   const isLoggedIn = async () => {
     const {
       data: { session },
@@ -104,6 +108,7 @@ export default function RootLayout({
     if (!session?.user) {
       return router.push("/unauthorised");
     }
+    setUser(session?.user as userType);
   };
   useEffect(() => {
     isLoggedIn();
@@ -128,7 +133,9 @@ export default function RootLayout({
           {/* <!-- ===== Main Content Start ===== --> */}
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-              {children}
+              <UserContext.Provider value={user}>
+                {children}
+              </UserContext.Provider>
             </div>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}

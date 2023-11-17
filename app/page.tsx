@@ -38,9 +38,26 @@ export default async function Index() {
     role = data?.role;
   }
   return (
-    <div className={`dark:bg-boxdark-2 dark:text-bodydark`}>
+    // <div className="flex-1 w-full flex flex-col gap-20 items-center ">
+    //   <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+    //     <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
+    //       <DeployButton />
+    //       <Button>Click me</Button>
+    //       {isSupabaseConnected && <AuthButton />}
+    //     </div>
+    //   </nav>
+
+    //   <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
+
+    //   </footer>
+    // </div>
+      
+    <div
+      className={`dark:bg-boxdark-2 dark:text-bodydark min-h-screen flex flex-col `}
+    >
+      <div>
       <AuthButton />
+      </div>
       <Landing userRole={role} />
     </div>
-  );
-}
+–}

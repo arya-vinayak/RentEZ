@@ -37,28 +37,46 @@ export default function Landing({ userRole }: LandingProps) {
       label: "Home",
       href: homeUrl,
     },
-    {
+    // {
+    //   icon: {
+    //     icon: <BiLogInCircle />,
+    //     fillIcon: <BiSolidLogIn />,
+    //   },
+    //   label: "Login",
+    //   href: "/login",
+    // },
+    // {
+    //   icon: {
+    //     icon: <RiLoginBoxLine />,
+    //     fillIcon: <RiLoginBoxFill />,
+    //   },
+    //   label: "Signup",
+    //   href: "/signup",
+    // },
+  ];
+  if(!userRole) {
+    sidebarItmes.push({
       icon: {
         icon: <BiLogInCircle />,
         fillIcon: <BiSolidLogIn />,
       },
       label: "Login",
       href: "/login",
-    },
-    {
+    });
+    sidebarItmes.push({
       icon: {
         icon: <RiLoginBoxLine />,
         fillIcon: <RiLoginBoxFill />,
       },
       label: "Signup",
       href: "/signup",
-    },
-  ];
+    });
+  }
   return (
     <div
-      className={`dark:bg-boxdark-2 dark:text-bodydark}`}
+      className={`dark:bg-boxdark-2 dark:text-bodydark overflow-hidden`}
     >
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
         <Sidebar sidebarItems={sidebarItmes} />
         {/* <!-- ===== Sidebar End ===== --> */}

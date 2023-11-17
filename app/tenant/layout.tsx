@@ -3,7 +3,6 @@ import Header1 from "@/components/HeaderBar";
 import Sidebar from "@/components/Sidebar";
 import { useRouter } from "next/navigation";
 import { createClient } from "../../utils/supabase/client";
-import { useEffect } from "react";
 //icons
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { HiUsers } from "react-icons/hi";
@@ -15,6 +14,10 @@ import { SideNavItemType } from "@/types/sidebarProps";
 import { Header1Props } from "@/types/headerProps";
 import { FaFileContract } from "react-icons/fa";
 import { LiaFileContractSolid } from "react-icons/lia";
+import { userType } from "@/types/user";
+import { useEffect, useContext, useState, createContext } from "react";
+import UserContext from "@/contexts/userContext"
+import { set } from "zod";
 
 const sidebarItmes: SideNavItemType[] = [
   {
@@ -80,13 +83,16 @@ export default function RootLayout({
 }) {
   const router = useRouter();
   const supabase = createClient();
+  const [user, setUser] = useState<userType | null>(null);
+
   const isLoggedIn = async () => {
     const {
-      data: { session }
+      data: { session },
     } = await supabase.auth.getSession();
     if (!session?.user) {
       return router.push("/unauthorised");
     }
+    setUser(session?.user as userType);
   };
   useEffect(() => {
     isLoggedIn();
@@ -111,7 +117,9 @@ export default function RootLayout({
           {/* <!-- ===== Main Content Start ===== --> */}
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-              {children}
+              <UserContext.Provider value={user}>
+                {children}
+              </UserContext.Provider>
             </div>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}

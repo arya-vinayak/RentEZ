@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     const uid = session?.user?.id
     const {data} = await supabase.from("users").select("role").eq("id", uid).single()
     if (!data) {
-      const redirectUrl = new URL(requestUrl.origin + '/signup')
+      const redirectUrl = new URL(requestUrl.origin + '/signup/details')
       return NextResponse.redirect(redirectUrl.href)
     }
     const role = data.role

@@ -77,7 +77,7 @@ export default function Login({
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 items-center mx-auto py-4">
+    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 items-center mt-10 mx-auto py-4 pt-7">
       <Link
         href="/"
         className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
@@ -145,7 +145,7 @@ export default function Login({
           Sign In with Google
       </button>
       </form> */}
-      <LogInForm signIn={signIn} googleSignIn={googleSignIn} message={searchParams?.message} />
+      <LogInForm signIn={signIn} googleSignIn={googleSignIn} message={searchParams?.message} text="Login" />
       <form className="animate-in flex flex-col w-full gap-2 text-foreground my-2">
       <button
           formAction={googleSignIn}
