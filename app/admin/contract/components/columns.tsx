@@ -1,12 +1,11 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Visitor } from "@/types/Visitor"; 
+import { Contract } from "@/types/Contract";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 
-export const columns: ColumnDef<Visitor>[] = [
+export const columns: ColumnDef<Contract>[] = [
   {
     id: "select",
     header: ({ table }) => (

@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-
-import { Notification } from "@/types/Notification";
+import { Announcement } from "@/types/Announcements";
 
 function NotificationCard({
   notifications,
 }: {
-  notifications: Notification[];
+  notifications: Announcement[];
 }) {
   return (
     <>
@@ -19,11 +18,7 @@ function NotificationCard({
             {notification.announcement_message}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-300 text-right mt-2">
-            {notification.date_of_announcement.toLocaleDateString("en-US", {
-              month: "numeric",
-              day: "numeric",
-              year: "numeric",
-            })}
+            {notification.date_of_announcement}
           </p>
         </div>
       ))}
