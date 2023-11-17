@@ -36,13 +36,14 @@ import {
 
 import { CSchema } from "@/types/Contract";
 
-interface DataTableRowActionsProps<TData> {
+export interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
-
+  onDeleteRow: (rowId: string) => void;
 }
 
 export function DataTableRowActions<TData>({
   row,
+  onDeleteRow,
 }: DataTableRowActionsProps<TData>) {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -58,10 +59,11 @@ export function DataTableRowActions<TData>({
     }
   };
 
-
-  const handleDelete = () => {
-    console.log("Delete");
-  }
+const handleDelete = () => {
+  // Call onDeleteRow with the row ID when Delete is clicked
+  onDeleteRow(row.getValue("tenant_id"));
+ 
+};
 
   const contract = CSchema.parse(row.original);
 
@@ -123,5 +125,4 @@ export function DataTableRowActions<TData>({
     </div>
   );
 }
-
 
