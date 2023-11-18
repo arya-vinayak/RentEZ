@@ -10,27 +10,22 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { statuses } from "./data/data";
 import { DataTableColumnHeader } from "./components/data-table-column-header";
 import { DataTableRowActions } from "./components/data-table-row-actions";
+import { createClient } from "@/utils/supabase/client";
 
 async function getTasks() {
   const data = await getData();
   return data;
 }
-import { createClient } from "@/utils/supabase/client";
-
-// async function getTasks() {
-//   const data = await getData();
-//   return data;
-// }
 
 export default function TasksPage() {
-  const supabase = createClient();
-  const getTasks = async () => {
-    const { data: {session} } = await supabase.auth.getSession();
-    // console.log(session?.user?.id)
-    const { data, error } = await supabase.rpc('get_payment', {userid: session?.user?.id}).select('*');
-    // console.log(data)
-    return data;
-  }
+  // const supabase = createClient();
+  // const getTasks = async () => {
+  //   const { data: {session} } = await supabase.auth.getSession();
+  //   // console.log(session?.user?.id)
+  //   const { data, error } = await supabase.rpc('get_payment', {userid: session?.user?.id}).select('*');
+  //   // console.log(data)
+  //   return data;
+  // }
   const [tasks, setTasks] = useState<Payment[] | null>([]);
 
   useEffect(() => {
@@ -78,12 +73,12 @@ export default function TasksPage() {
       enableHiding: false,
     },
     {
-      accessorKey: "owner_id",
+      accessorKey: "owner",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Owner ID" />
+        <DataTableColumnHeader column={column} title="Owner Name" />
       ),
       cell: ({ row }) => (
-        <div className="w-[80px]">{row.getValue("owner_id")}</div>
+        <div className="w-[80px]">{row.getValue("owner")}</div>
       ),
       enableSorting: false,
       enableHiding: false,
@@ -154,8 +149,8 @@ export default function TasksPage() {
           </div>
           <div className="flex items-center space-x-2"></div>
         </div>
-        <DataTable data={tasks?tasks:[]} columns={columns} />
-        <PaymentCard payments={tasks?tasks:[]} setTasks={setTasks} />
+        <DataTable data={tasks ? tasks : []} columns={columns} setTasks={setTasks}/>
+        <PaymentCard payments={tasks ? tasks : []} setTasks={setTasks} />
       </div>
     </>
   );
