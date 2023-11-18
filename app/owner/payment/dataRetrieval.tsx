@@ -9,7 +9,7 @@ import { z } from "zod";
 //Simulate a database read for tasks.
 async function getTasks() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "/app/tenant/payment/data/payments.json")
+    path.join(process.cwd(), "/app/owner/payment/data/payments.json")
   );
 
   const tasks = JSON.parse(data.toString());

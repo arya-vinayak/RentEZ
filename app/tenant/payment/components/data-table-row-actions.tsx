@@ -19,8 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { statuses } from "../data/data"
-import { PSchema } from "../data/schema"
-
+import { PSchema } from "@/types/Payment"
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
@@ -46,18 +45,6 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={payment.status}>
-              {statuses.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Delete

@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef } from "@tanstack/react-table";
 
-import { Badge } from "@/components/ui/badge"
-import { Checkbox } from "@/components/ui/checkbox"
-import { statuses } from "../data/data"
-import { Payment } from "../data/schema"
-import { DataTableColumnHeader } from "./data-table-column-header"
-import { DataTableRowActions } from "./data-table-row-actions"
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import { statuses } from "../data/data";
+import { Payment } from "@/types/Payment";
+import { DataTableColumnHeader } from "./data-table-column-header";
+import { DataTableRowActions } from "./data-table-row-actions";
 
 export const columns: ColumnDef<Payment>[] = [
   {
@@ -50,6 +50,17 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "tenant_id",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Tenant ID" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("tenant_id")}</div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
     accessorKey: "cost",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Cost" />
@@ -66,10 +77,10 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       const status = statuses.find(
         (status) => status.value === row.getValue("status")
-      )
+      );
 
       if (!status) {
-        return null
+        return null;
       }
 
       return (
@@ -79,14 +90,23 @@ export const columns: ColumnDef<Payment>[] = [
           )}
           <span>{status.label}</span>
         </div>
-      )
+      );
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+      return value.includes(row.getValue(id));
     },
+  },
+  {
+    accessorKey: "type",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Type" />
+    ),
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue("type")}</div>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
-]
+];

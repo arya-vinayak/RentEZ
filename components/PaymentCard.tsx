@@ -25,24 +25,21 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
+import { Payment ,PSchema} from "@/types/Payment";
 
-const paymentSchema = z.object({
-  id: z.string().min(10, {
-    message: "Payment ID must be at least 10 characters.",
-  }),
-  date: z.string().min(10, {
-    message: "Date must be at least 10 characters.",
-  }),
-  cost: z.string(),
-  status: z.string(),
-});
 
-type Payment = {
-  id: string;
-  date: string;
-  cost: string;
-  status: string;
-};
+
+// const paymentSchema = z.object({
+//   id: z.string().min(10, {
+//     message: "Payment ID must be at least 10 characters.",
+//   }),
+//   date: z.string().min(10, {
+//     message: "Date must be at least 10 characters.",
+//   }),
+//   cost: z.string(),
+//   status: z.string(),
+// });
+
 
 type PaymentCardProps = {
   payments?: Payment[];
@@ -51,27 +48,33 @@ type PaymentCardProps = {
 
 export function PaymentCard({ payments,setTasks }: PaymentCardProps) {
   const defaultValues = {
-    id: "",
-    date: "",
-    cost: "NULL",
-    status: "pending",
-  };
+    id:"",
+    tenant_id:"",
+    owner_id:"",
+    date: new Date().toISOString().slice(0, 10),
+    cost : 0,
+    status : "pending",
+    type : "rent",//i have set rent payment as default - arya
+  }
 
 
   const register = useForm({
-    resolver: zodResolver(paymentSchema),
+    resolver: zodResolver(PSchema),
     defaultValues: defaultValues,
   });
 
   const onSubmit = (data:any) => {
     console.log(data);
    
-    const newPayment: Payment = {
+    const newPayment = {
       id: data.id,
+      tenant_id: data.tenant_id,
+      owner_id: data.owner_id,
       date: data.date,
       cost: data.cost,
       status: data.status,
-    };
+      type: data.type,
+    }
     setTasks((prevTasks: Payment[]) => [...prevTasks, newPayment]);
   
   };
@@ -84,66 +87,66 @@ export function PaymentCard({ payments,setTasks }: PaymentCardProps) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Make a payment</DialogTitle>
-          <DialogDescription>
-            Clear you rental payments here.
-          </DialogDescription>
+          <DialogDescription>Clear you rental payments here.</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-1 items-center gap-4">
-          <Form {...register}>
-          <form onSubmit={register.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={register.control}
-              name="id"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Payment ID</FormLabel>
-                  <FormControl>
-                    <Input type="text" placeholder="PAYMENT-XXX" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <Form {...register}>
+              <form
+                onSubmit={register.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
+                <FormField
+                  control={register.control}
+                  name="id"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Payment ID</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="PAYMENT-XXX"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <FormField
-              control={register.control}
-              name="date"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Date</FormLabel>
-                  <FormControl>
-                    <Input type="date" placeholder="Date" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={register.control}
-              name="cost"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Cost</FormLabel>
-                  <FormControl>
-                    <Input type="text" placeholder="Cost" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter>
-        <Button type="submit">Pay</Button>
-        </DialogFooter>
-          </form>
-        </Form> 
+                <FormField
+                  control={register.control}
+                  name="cost"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Cost</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          placeholder="Cost"
+                          {...field}
+                          min={0}
+                          onChange={(e) => {
+                            // Convert the input value to a number
+                            const numericValue = parseFloat(e.target.value);
+                            // Set the numeric value to the form field
+                            field.onChange(numericValue);
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <DialogFooter>
+                  <Button type="submit">Pay</Button>
+                </DialogFooter>
+              </form>
+            </Form>
           </div>
         </div>
-        
       </DialogContent>
     </Dialog>
-    
   );
 }
 
