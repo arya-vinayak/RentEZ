@@ -17,58 +17,21 @@ import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import AuthButton from "@/components/AuthButton";
 
-async function getVisitors() {
-  const tempData: Visitor[] = [
-    {
-      visitor_name: "John Doe",
-      date_of_visit: "2023-11-05",
-      time_of_visit: "10:30:00",
-      flat_number: "101",
-    },
-    {
-      visitor_name: "Alice Smith",
-      date_of_visit: "2023-11-06",
-      time_of_visit: "11:00:00",
-      flat_number: "102",
-    },
+const cookieStore = cookies();
+const supabase = createClient(cookieStore);
 
-    // Add more visitor objects as needed
-    {
-      visitor_name: "John Doe",
-      date_of_visit: "2023-11-05",
-      time_of_visit: "14:30:00",
-      flat_number: "103",
-    },
-    {
-      visitor_name: "Alice Smith",
-      date_of_visit: "2023-11-06",
-      time_of_visit: "15:00:00",
-      flat_number: "104",
-    },
-    {
-      visitor_name: "John Doe",
-      date_of_visit: "2023-11-05",
-      time_of_visit: "18:30:00",
-      flat_number: "105",
-    },
-    {
-      visitor_name: "Alice Smith",
-      date_of_visit: "2023-11-06",
-      time_of_visit: "19:00:00",
-      flat_number: "106",
-    },
-  ];
-  return tempData;
+async function getVisitors(id: string | undefined): Promise<Visitor[] | null> {
+  const { data, error } = await supabase.rpc("get_owner_visitors", {owner_id: id }).select();
+  return data;
 }
 
 export default async function AnnouncementPage() {
   // const announcements = await getNotifications();
-  const visitors = await getVisitors();
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
-  const { data, error } = await supabase.from("announcement").select("*");
-  console.log(data);
+  let { data: {session} } = await supabase.auth.getSession();
+  let { data, error } = await supabase.from("announcement").select("*");
   let announcements = data;
+  let visitors = await getVisitors(session?.user?.id);
+
   return (
     <>
       <Breadcrumb pageName="Home" >
@@ -83,7 +46,7 @@ export default async function AnnouncementPage() {
           <NotificationCard notifications={announcements} />
         </TabsContent>
         <TabsContent value="visitors" className="mx-auto space-y-4">
-          <VisitorCard visitors={visitors} />
+          <VisitorCard visitors={visitors?visitors:[]} />
         </TabsContent>
       </Tabs>
     </>
