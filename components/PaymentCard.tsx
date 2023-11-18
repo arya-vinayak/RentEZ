@@ -49,8 +49,8 @@ type PaymentCardProps = {
 export function PaymentCard({ payments,setTasks }: PaymentCardProps) {
   const defaultValues = {
     id:"",
-    tenant_id:"",
-    owner_id:"",
+    tenant:"",
+    owner:"",
     date: new Date().toISOString().slice(0, 10),
     cost : 0,
     status : "pending",
