@@ -1,0 +1,72 @@
+[
+    {
+      "date": "2023-11-01",
+      "cost": 250.75,
+      "description": "AUTEM VOLUPTAS AUT PORRO",
+      "maintenance_status": "done",
+      "maintenance_payment_status": "pending"
+    },
+    {
+      "date": "2023-10-31",
+      "cost": 158.45,
+      "description": "TEMPORIBUS VOLUPTATE EA FUGIAT",
+      "maintenance_status": "todo",
+      "maintenance_payment_status": "success"
+    },
+    {
+      "date": "2023-10-30",
+      "cost": 356.32,
+      "description": "DUCIMUS VOLUPTAS QUI LABORIOSAM",
+      "maintenance_status": "done",
+      "maintenance_payment_status": "success"
+    },
+    {
+      "date": "2023-10-29",
+      "cost": 421.20,
+      "description": "EXERCITATIONEM QUASI QUIS RERUM",
+      "maintenance_status": "todo",
+      "maintenance_payment_status": "pending"
+    },
+    {
+      "date": "2023-10-28",
+      "cost": 125.89,
+      "description": "QUIS CULPA AT IPSA",
+      "maintenance_status": "done",
+      "maintenance_payment_status": "pending"
+    },
+    {
+      "date": "2023-10-27",
+      "cost": 305.14,
+      "description": "ADIPISCI TEMPORA EXERCITATIONEM QUOD",
+      "maintenance_status": "done",
+      "maintenance_payment_status": "pending"
+    },
+    {
+      "date": "2023-10-26",
+      "cost": 199.30,
+      "description": "LABORUM SIMILIQUE AD SED",
+      "maintenance_status": "done",
+      "maintenance_payment_status": "success"
+    },
+    {
+      "date": "2023-10-25",
+      "cost": 301.55,
+      "description": "NISI REPREHENDERIT AB EXERCITATIONEM",
+      "maintenance_status": "done",
+      "maintenance_payment_status": "pending"
+    },
+    {
+      "date": "2023-10-24",
+      "cost": 187.75,
+      "description": "CUPIDITATE AMET EX ET",
+      "maintenance_status": "done",
+      "maintenance_payment_status": "success"
+    },
+    {
+      "date": "2023-10-23",
+      "cost": 396.60,
+      "description": "VOLUPTATEM VOLUPTATUM ID FACERE",
+      "maintenance_status": "todo",
+      "maintenance_payment_status": "success"
+    }
+  ]
