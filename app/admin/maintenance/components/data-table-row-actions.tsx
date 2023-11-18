@@ -2,6 +2,7 @@
 
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
 import { Row } from "@tanstack/react-table"
+import { Badge } from "@/components/ui/badge";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -19,8 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { statuses } from "../data/data"
-import { MSchema } from "../data/schema"
-
+import { MSchema } from "@/types/Maintenance"
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
@@ -42,27 +42,10 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
+        <DropdownMenuItem>Done</DropdownMenuItem>
+       
         <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.maintenance_status}>
-              {statuses.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
+       
       </DropdownMenuContent>
     </DropdownMenu>
   )

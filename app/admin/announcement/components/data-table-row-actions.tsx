@@ -21,13 +21,21 @@ import {
 import { ASchema } from "@/types/Announcements"
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData>;
+  onDeleteRow: (rowId: string) => void;
 }
 
 export function DataTableRowActions<TData>({
   row,
+  onDeleteRow,
 }: DataTableRowActionsProps<TData>) {
-  const task = ASchema.parse(row.original)
+  const announcement = ASchema.parse(row.original)
+
+
+  const handleDeleteRow = () => {
+    onDeleteRow(announcement.id)
+  }
+
 
   return (
     <DropdownMenu>
@@ -46,11 +54,11 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDeleteRow}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

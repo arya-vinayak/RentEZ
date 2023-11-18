@@ -13,8 +13,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { CardTitle, CardContent, Card, CardHeader } from "@/components/ui/card";
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -24,26 +22,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Maintain } from "@/types/Maintenance";
+import { MSchema } from "@/types/Maintenance";
 
-const paymentSchema = z.object({
-  date: z.string().min(10, {
-    message: "Date must be at least 10 characters.",
-  }),
-  description: z.string().min(10, {
-    message: "Description must be at least 10 characters.",
-  }),
-  cost: z.number(),
-  maintenance_status: z.string(),
-  maintenance_payment_status: z.string(),
-});
-
-type Maintenance = {
-  date: string;
-  description: string;
-  cost: number;
-  maintenance_status: string;
-  maintenance_payment_status: string;
-};
 
 type PaymentCardProps = {
   setTasks?: any;
@@ -51,7 +32,8 @@ type PaymentCardProps = {
 
 export function MaintenanceCard({ setTasks }: PaymentCardProps) {
   const defaultValues = {
-    date: "",
+    flat_number: "",
+    date: new Date().toISOString().slice(0, 10),
     description: "",
     cost: 0,
     maintenance_status: "todo",
@@ -59,7 +41,7 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
   };
 
   const register = useForm({
-    resolver: zodResolver(paymentSchema),
+    resolver: zodResolver(MSchema),
     defaultValues: defaultValues,
   });
 
@@ -67,14 +49,14 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
     console.log(data);
 
     const newM = {
-      id: data.id,
       date: data.date,
       description: data.description,
       cost: data.cost,
       maintenance_status: data.maintenance_status,
       maintenance_payment_status: data.maintenance_payment_status,
+      flat_number: data.flat_number,
     };
-    setTasks((prevTasks: Maintenance[]) => [...prevTasks, newM]);
+    setTasks((prevTasks: Maintain[]) => [...prevTasks, newM]);
   };
 
   return (
@@ -96,20 +78,6 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
                 onSubmit={register.handleSubmit(onSubmit)}
                 className="space-y-8"
               >
-                <FormField
-                  control={register.control}
-                  name="date"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Date</FormLabel>
-                      <FormControl>
-                        <Input type="date" placeholder="Date" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
                 <FormField
                   control={register.control}
                   name="description"

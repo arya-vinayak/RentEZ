@@ -28,13 +28,13 @@ import { ASchema } from "@/types/Announcements";
 import { Announcement } from "@/types/Announcements";
 
 type AnnouncementCardProps = {
-    setAnnouncements?: any;
+  setAnnouncements?: any;
 };
 
 export function AnnouncementAdd({ setAnnouncements }: AnnouncementCardProps) {
   const defaultValues = {
     id: "",
-    date_of_announcement: "",   
+    date_of_announcement: new Date().toISOString().slice(0, 10),
     announcement_message: "",
     announced_by: "",
   };
@@ -48,10 +48,10 @@ export function AnnouncementAdd({ setAnnouncements }: AnnouncementCardProps) {
     console.log(data);
 
     const newA = {
-        id: data.id,
-        date_of_announcement: data.date_of_announcement,
-        announcement_message: data.announcement_message,
-        announced_by: data.announced_by,
+      id: data.id,
+      date_of_announcement: data.date_of_announcement,
+      announcement_message: data.announcement_message,
+      announced_by: data.announced_by,
     };
 
     setAnnouncements((prevA: Announcement[]) => [...prevA, newA]);
@@ -65,7 +65,9 @@ export function AnnouncementAdd({ setAnnouncements }: AnnouncementCardProps) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add Annoucement</DialogTitle>
-          <DialogDescription>Please add the announcement here.</DialogDescription>
+          <DialogDescription>
+            Please add the announcement here.
+          </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-1 items-center gap-4">
@@ -87,21 +89,6 @@ export function AnnouncementAdd({ setAnnouncements }: AnnouncementCardProps) {
                     </FormItem>
                   )}
                 />
-
-                <FormField
-                  control={register.control}
-                  name="date_of_announcement"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Date</FormLabel>
-                      <FormControl>
-                        <Input type="date" placeholder="Date" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
                 <FormField
                   control={register.control}
                   name="announcement_message"
@@ -109,7 +96,11 @@ export function AnnouncementAdd({ setAnnouncements }: AnnouncementCardProps) {
                     <FormItem>
                       <FormLabel>Message</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="Evacuate now!!" {...field} />
+                        <Input
+                          type="text"
+                          placeholder="Evacuate now!!"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
