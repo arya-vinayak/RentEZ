@@ -32,7 +32,8 @@ import { Button } from "@/components/ui/button"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  setTasks ?: any
+  setTasks ?: any,
+  
 }
 
 export function DataTable<TData, TValue>({
