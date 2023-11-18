@@ -3,9 +3,10 @@ import { LandingProps } from "@/types/Landing";
 import SignUpUserSteps from "@/components/SignUpUserSteps";
 // import Header from '@/components/Header'
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import userContext from "@/contexts/userContext";
 import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
+import AuthButton from "./AuthButton";
 //icons
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { RiLoginBoxFill, RiLoginBoxLine } from "react-icons/ri";
@@ -15,19 +16,12 @@ import personWalkin from "@/public/animations/person.json";
 import Lottie from "lottie-react";
 import Header from "./Header";
 import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
-async function getRole() {
-  const supabase = createClient();
-  const { data: {session} } = await supabase.auth.getSession();
-  if(!session) return null;
-  const uid = session?.user?.id;
-  const { data } = await supabase.from("users").select("role").eq("id", uid).single();
-  return data;
-}
-
-
-export default function Landing({ userRole }: LandingProps) {
+export default function Landing({ userRole, userName, children }: LandingProps) {
   const homeUrl = userRole ? `/${userRole}` : "/";
+  const supabase = createClient();
+  const router = useRouter();
   const sidebarItmes: SideNavItemType[] = [
     {
       icon: {
@@ -72,6 +66,11 @@ export default function Landing({ userRole }: LandingProps) {
       href: "/signup",
     });
   }
+  const signOut = async () => {
+    console.log("signout");
+    await supabase.auth.signOut();
+    router.push("/");
+  }
   return (
     <div
       className={`dark:bg-boxdark-2 dark:text-bodydark overflow-hidden`}
@@ -96,7 +95,15 @@ export default function Landing({ userRole }: LandingProps) {
               <p className="text-2xl my-2 text-center text-gray-600">
                 Making Renting Easy
               </p>
-              <div className="grid grid-cols-4 gap-2 items-center justify-center my-8">
+              {userName ? (
+                <div className="grid grid-cols-3 items-center justify-center my-8">
+                <p className="col-span-2 py-6 px-3 text-center font-medium text-xl"> Hey, {userName}! </p>
+                <div className="col-span-1 text-xl ">
+                  {children}
+                </div>
+              </div>
+              ) : (
+                <div className="grid grid-cols-4 gap-2 items-center justify-center my-8">
                 <Button
                   variant="outline"
                   className="col-span-2 py-6 px-3 text-xl"
@@ -112,6 +119,7 @@ export default function Landing({ userRole }: LandingProps) {
                   <Link href="/signup">Get Started</Link>
                 </Button>
               </div>
+              )}
             </div>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 col-span-4">
               <Lottie

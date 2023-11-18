@@ -13,77 +13,9 @@ import { Announcement } from "@/types/Announcements";
 import { Visitor } from "@/types/Visitor";
 import VisitorCard from "@/components/VisitorCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-async function getNotifications() {
-  const tempData: Announcement[] = [
-    {
-      id: "1",
-      date_of_announcement: "2022-01-01",
-      announcement_message: "Lorem ipsum dolor sit amet",
-      announced_by: "John Doe",
-    },
-    {
-      id: "2",
-      date_of_announcement: "2022-01-02",
-      announcement_message: "Consectetur adipiscing elit",
-      announced_by: "Jane Doe",
-    },
-    {
-      id: "3",
-      date_of_announcement: "2022-01-03",
-      announcement_message: "Sed do eiusmod tempor incididunt",
-      announced_by: "Alice Smith",
-    },
-    {
-      id: "4",
-      date_of_announcement: "2022-01-04",
-      announcement_message: "Ut enim ad minim veniam",
-      announced_by: "Bob Johnson",
-    },
-    {
-      id: "5",
-      date_of_announcement: "2022-01-05",
-      announcement_message: "Duis aute irure dolor in reprehenderit",
-      announced_by: "Charlie Brown",
-    },
-    {
-      id: "6",
-      date_of_announcement: "2022-01-06",
-      announcement_message: "Excepteur sint occaecat cupidatat non proident",
-      announced_by: "David Lee",
-    },
-    {
-      id: "7",
-      date_of_announcement: "2022-01-07",
-      announcement_message:
-        "Sunt in culpa qui officia deserunt mollit anim id est laborum",
-      announced_by: "Eva Chen",
-    },
-    {
-      id: "8",
-      date_of_announcement: "2022-01-08",
-      announcement_message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      announced_by: "Frank Smith",
-    },
-    {
-      id: "9",
-      date_of_announcement: "2022-01-09",
-      announcement_message:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-      announced_by: "Grace Lee",
-    },
-    {
-      id: "10",
-      date_of_announcement: "2022-01-10",
-      announcement_message:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      announced_by: "Henry Johnson",
-    },
-  ];
-;
-  return tempData;
-}
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
+import AuthButton from "@/components/AuthButton";
 
 async function getVisitors() {
   const tempData: Visitor[] = [
@@ -130,13 +62,18 @@ async function getVisitors() {
 }
 
 export default async function AnnouncementPage() {
-  const announcements = await getNotifications();
+  // const announcements = await getNotifications();
   const visitors = await getVisitors();
-
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const { data, error } = await supabase.from("announcement").select("*");
+  console.log(data);
+  let announcements = data;
   return (
     <>
-      <Breadcrumb pageName="Home" />
-
+      <Breadcrumb pageName="Home" >
+        <AuthButton />
+        </Breadcrumb>
       <Tabs defaultValue="announcements" className="space-y-4">
         <TabsList>
           <TabsTrigger value="announcements">Announcements</TabsTrigger>
