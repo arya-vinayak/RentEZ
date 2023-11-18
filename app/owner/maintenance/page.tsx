@@ -30,7 +30,7 @@ export default function TasksPage() {
             Here&apos;s a list of Maintenance Requests!
           </p>
         </div>
-        <MaintenanceCard setTasks={setTasks} />
+        <MaintenanceCard setTasks={setTasks} owner ={true} />
         <DataTable data={tasks} columns={columns} />
       </div>
     </>

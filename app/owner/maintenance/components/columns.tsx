@@ -11,27 +11,6 @@ import { DataTableRowActions } from "./data-table-row-actions";
 
 export const columns: ColumnDef<Maintain>[] = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-[2px]"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-[2px]"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: "date",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
@@ -41,12 +20,34 @@ export const columns: ColumnDef<Maintain>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "payment_id",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Payment ID" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("payment_id")}</div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "flat_number",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Flat NO" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("flat_number")}</div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+
+  {
     accessorKey: "description",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
     ),
     cell: ({ row }) => {
-      
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
@@ -93,13 +94,13 @@ export const columns: ColumnDef<Maintain>[] = [
     },
   },
   {
-    accessorKey: "maintenance_payment_status",
+    accessorKey: "payment_status",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Payment Status" />
     ),
     cell: ({ row }) => {
       const status = pstatuses.find(
-        (status) => status.value === row.getValue("maintenance_payment_status")
+        (status) => status.value === row.getValue("payment_status")
       );
 
       if (!status) {
@@ -118,9 +119,5 @@ export const columns: ColumnDef<Maintain>[] = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
-  },
-  {
-    id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];

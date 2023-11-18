@@ -28,16 +28,18 @@ import { MSchema } from "@/types/Maintenance";
 
 type PaymentCardProps = {
   setTasks?: any;
+  owner?: boolean;
 };
 
-export function MaintenanceCard({ setTasks }: PaymentCardProps) {
+export function MaintenanceCard({ setTasks,owner }: PaymentCardProps) {
   const defaultValues = {
+    payment_id: "",
     flat_number: "",
     date: new Date().toISOString().slice(0, 10),
     description: "",
     cost: 0,
     maintenance_status: "todo",
-    maintenance_payment_status: "pending",
+    payment_status: "pending",
   };
 
   const register = useForm({
@@ -49,12 +51,13 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
     console.log(data);
 
     const newM = {
+      payment_id: data.payment_id,
       date: data.date,
+      flat_number: data.flat_number,
       description: data.description,
       cost: data.cost,
       maintenance_status: data.maintenance_status,
-      maintenance_payment_status: data.maintenance_payment_status,
-      flat_number: data.flat_number,
+      payment_status: data.payment_status
     };
     setTasks((prevTasks: Maintain[]) => [...prevTasks, newM]);
   };
@@ -107,15 +110,40 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
                           type="number"
                           placeholder="Cost"
                           {...field}
-                          onChange={(event) =>
-                            field.onChange(+event.target.value)
-                          }
+                          min={0}
+                          onChange={(e) => {
+                            // Convert the input value to a number
+                            const numericValue = parseFloat(e.target.value);
+                            // Set the numeric value to the form field
+                            field.onChange(numericValue);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+                {
+                  owner && (
+                    <FormField
+                    control={register.control}
+                    name="flat_number"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Flat Number</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            placeholder="Flat Number"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  )
+                }
 
                 <DialogFooter>
                   <Button type="submit">Add Request</Button>
