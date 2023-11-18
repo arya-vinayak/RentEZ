@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const MSchema = z.object({
+  flat_number: z.string(),
   date: z.string(),
   cost: z.number(),
   description: z.string(),

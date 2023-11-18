@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { statuses } from "../data/data";
-import { Payment } from "../data/schema";
+import { Payment } from "@/types/Payment";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 
@@ -50,6 +50,17 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "owner_id",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Owner ID" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("owner_id")}</div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
     accessorKey: "cost",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Cost" />
@@ -84,6 +95,15 @@ export const columns: ColumnDef<Payment>[] = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
+  },
+  {
+    accessorKey: "type",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Type" />
+    ),
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue("type")}</div>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     id: "actions",

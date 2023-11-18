@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { pstatuses, statuses } from "../data/data";
-import { Maintain } from "../data/schema";
+import { Maintain } from "@/types/Maintenance";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
 
@@ -46,13 +46,9 @@ export const columns: ColumnDef<Maintain>[] = [
       <DataTableColumnHeader column={column} title="Title" />
     ),
     cell: ({ row }) => {
-      const label = pstatuses.find(
-        (label) => label.value === row.original.label
-      );
-
+      
       return (
         <div className="flex space-x-2">
-          {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("description")}
           </span>

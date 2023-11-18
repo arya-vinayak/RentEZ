@@ -19,8 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { statuses } from "../data/data"
-import { MSchema } from "../data/schema"
-
+import { MSchema } from "@/types/Maintenance"
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }

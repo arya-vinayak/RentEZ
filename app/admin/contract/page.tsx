@@ -117,12 +117,12 @@ export default function TasksPage() {
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Contracts</h2>
         </div>
+        <ContractAdd setContracts={setContracts} />
         <DataTable
           data={contracts}
           columns={columns}
           onDeleteRow={handleDeleteRow}
         />
-        <ContractAdd setContracts={setContracts} />
       </div>
     </>
   );

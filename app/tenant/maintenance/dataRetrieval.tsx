@@ -2,7 +2,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { z } from "zod";
-import { MSchema } from "./data/schema";
+import { MSchema } from "@/types/Maintenance";
 
 async function getTasks() {
   const data = await fs.readFile(

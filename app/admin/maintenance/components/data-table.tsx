@@ -27,15 +27,19 @@ import {
 
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
+import { Button } from "@/components/ui/button"
+import { Maintain } from "@/types/Maintenance"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  data: TData[],
+  setTasks : React.Dispatch<React.SetStateAction<Maintain[]>>,
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  setTasks,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
@@ -44,6 +48,24 @@ export function DataTable<TData, TValue>({
     []
   )
   const [sorting, setSorting] = React.useState<SortingState>([])
+
+  const updateMaintenanceStatus = () => {
+  //   //updating the maintenance status for all the selected tasks
+    const selectedTasks = Object.keys(rowSelection);
+    console.log(selectedTasks);
+  //   const updatedTasks = data.map((task) => {
+  //     if (selectedTasks.includes(String(task.id))) {
+  //       return { ...task, maintenance_status: "done" };
+  //     }
+  //     return task;
+  //   });
+
+  //   setTasks(updatedTasks);
+  // };
+    
+  //   setTasks(updatedTasks);
+    
+   };
 
   const table = useReactTable({
     data,
@@ -65,7 +87,7 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  })
+  });
 
   return (
     <div className="space-y-4">
@@ -85,7 +107,7 @@ export function DataTable<TData, TValue>({
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -121,6 +143,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <DataTablePagination table={table} />
+      <Button onClick={updateMaintenanceStatus}>Mark done</Button>
     </div>
-  )
+  );
 }

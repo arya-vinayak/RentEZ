@@ -24,13 +24,10 @@ export default function TasksPage() {
     <>
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">
-           Visitors
-          </h2>
-         
+          <h2 className="text-2xl font-bold tracking-tight">Visitors</h2>
         </div>
-        <DataTable data={visitors} columns={columns} />
         <VisitorAdd setVisitors={setVisitors} />
+        <DataTable data={visitors} columns={columns} />
       </div>
     </>
   );

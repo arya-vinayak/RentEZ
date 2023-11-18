@@ -2,11 +2,11 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { z } from "zod";
-import { MSchema } from "./data/schema";
+import { MSchema } from "@/types/Maintenance";
 
 async function getTasks() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "/app/tenant/maintenance/data/tasks.json")
+    path.join(process.cwd(), "/app/owner/maintenance/data/tasks.json")
   );
 
   const tasks = JSON.parse(data.toString());

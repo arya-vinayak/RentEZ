@@ -1,188 +1,200 @@
 [
-        {
-            "date": "2023-11-01",
-            "id": "PAYMENT-001",
-            "cost": 100.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-02",
-            "id": "PAYMENT-002",
-            "cost": 80.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-03",
-            "id": "PAYMENT-003",
-            "cost": 90.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-04",
-            "id": "PAYMENT-004",
-            "cost": 110.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-05",
-            "id": "PAYMENT-005",
-            "cost": 60.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-06",
-            "id": "PAYMENT-006",
-            "cost": 120.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-07",
-            "id": "PAYMENT-007",
-            "cost": 90.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-08",
-            "id": "PAYMENT-008",
-            "cost": 70.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-09",
-            "id": "PAYMENT-009",
-            "cost": 110.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-10",
-            "id": "PAYMENT-010",
-            "cost": 40.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-11",
-            "id": "PAYMENT-011",
-            "cost": 130.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-12",
-            "id": "PAYMENT-012",
-            "cost": 95.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-13",
-            "id": "PAYMENT-013",
-            "cost": 85.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-14",
-            "id": "PAYMENT-014",
-            "cost": 55.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-15",
-            "id": "PAYMENT-015",
-            "cost": 75.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-16",
-            "id": "PAYMENT-016",
-            "cost": 65.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-17",
-            "id": "PAYMENT-017",
-            "cost": 150.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-07",
-            "id": "PAYMENT-007",
-            "cost": 90.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-08",
-            "id": "PAYMENT-008",
-            "cost": 70.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-09",
-            "id": "PAYMENT-009",
-            "cost": 110.0,
-            "status": "pending"
-        },
-        {
-            "date": "2023-11-10",
-            "id": "PAYMENT-010",
-            "cost": 40.0,
-            "status": "success"
-        },
-        {
-            "date": "2023-11-11",
-            "id": "PAYMENT-011",
-            "cost": 130.0,
-            "status": "Success"
-        },
-        {
-            "date": "2023-11-12",
-            "id": "PAYMENT-012",
-            "cost": 95.0,
-            "status": "Pending"
-        },
-        {
-            "date": "2023-11-13",
-            "id": "PAYMENT-013",
-            "cost": 85.0,
-            "status": "Success"
-        },
-        {
-            "date": "2023-11-14",
-            "id": "PAYMENT-014",
-            "cost": 55.0,
-            "status": "Pending"
-        },
-        {
-            "date": "2023-11-15",
-            "id": "PAYMENT-015",
-            "cost": 75.0,
-            "status": "Success"
-        },
-        {
-            "date": "2023-11-16",
-            "id": "PAYMENT-016",
-            "cost": 65.0,
-            "status": "Pending"
-        },
-        {
-            "date": "2023-11-17",
-            "id": "PAYMENT-017",
-            "cost": 150.0,
-            "status": "Success"
-        },
-        {
-            "date": "2023-11-18",
-            "id": "PAYMENT-018",
-            "cost": 45.0,
-            "status": "Pending"
-        },
-        {
-            "date": "2023-11-19",
-            "id": "PAYMENT-019",
-            "cost": 105.0,
-            "status": "Success"
-        },
-        {
-            "date": "2023-11-20",
-            "id": "PAYMENT-020",
-            "cost": 125.0,
-            "status": "Success"
-        }
+    {
+        "id": "PAYMENT-001",
+        "tenant_id": "TENANT-001",
+        "owner_id": "OWNER-001",
+        "date": "2023-11-01",
+        "cost": 100.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-002",
+        "tenant_id": "TENANT-002",
+        "owner_id": "OWNER-002",
+        "date": "2023-11-02",
+        "cost": 80.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-003",
+        "tenant_id": "TENANT-003",
+        "owner_id": "OWNER-003",
+        "date": "2023-11-03",
+        "cost": 120.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-004",
+        "tenant_id": "TENANT-004",
+        "owner_id": "OWNER-004",
+        "date": "2023-11-04",
+        "cost": 90.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-005",
+        "tenant_id": "TENANT-005",
+        "owner_id": "OWNER-005",
+        "date": "2023-11-05",
+        "cost": 110.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-006",
+        "tenant_id": "TENANT-006",
+        "owner_id": "OWNER-006",
+        "date": "2023-11-06",
+        "cost": 60.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-016",
+        "tenant_id": "TENANT-016",
+        "owner_id": "OWNER-016",
+        "date": "2023-11-16",
+        "cost": 65.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-017",
+        "tenant_id": "TENANT-017",
+        "owner_id": "OWNER-017",
+        "date": "2023-11-17",
+        "cost": 150.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-007",
+        "tenant_id": "TENANT-007",
+        "owner_id": "OWNER-007",
+        "date": "2023-11-07",
+        "cost": 90.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-008",
+        "tenant_id": "TENANT-008",
+        "owner_id": "OWNER-008",
+        "date": "2023-11-08",
+        "cost": 70.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-009",
+        "tenant_id": "TENANT-009",
+        "owner_id": "OWNER-009",
+        "date": "2023-11-09",
+        "cost": 110.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-010",
+        "tenant_id": "TENANT-010",
+        "owner_id": "OWNER-010",
+        "date": "2023-11-10",
+        "cost": 40.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-011",
+        "tenant_id": "TENANT-011",
+        "owner_id": "OWNER-011",
+        "date": "2023-11-11",
+        "cost": 130.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-012",
+        "tenant_id": "TENANT-012",
+        "owner_id": "OWNER-012",
+        "date": "2023-11-12",
+        "cost": 95.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-013",
+        "tenant_id": "TENANT-013",
+        "owner_id": "OWNER-013",
+        "date": "2023-11-13",
+        "cost": 85.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-014",
+        "tenant_id": "TENANT-014",
+        "owner_id": "OWNER-014",
+        "date": "2023-11-14",
+        "cost": 55.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-015",
+        "tenant_id": "TENANT-015",
+        "owner_id": "OWNER-015",
+        "date": "2023-11-15",
+        "cost": 75.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-016",
+        "tenant_id": "TENANT-016",
+        "owner_id": "OWNER-016",
+        "date": "2023-11-16",
+        "cost": 65.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-017",
+        "tenant_id": "TENANT-017",
+        "owner_id": "OWNER-017",
+        "date": "2023-11-17",
+        "cost": 150.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-018",
+        "tenant_id": "TENANT-018",
+        "owner_id": "OWNER-018",
+        "date": "2023-11-18",
+        "cost": 45.0,
+        "status": "pending",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-019",
+        "tenant_id": "TENANT-019",
+        "owner_id": "OWNER-019",
+        "date": "2023-11-19",
+        "cost": 105.0,
+        "status": "success",
+        "type": "rent"
+    },
+    {
+        "id": "PAYMENT-020",
+        "tenant_id": "TENANT-020",
+        "owner_id": "OWNER-020",
+        "date": "2023-11-20",
+        "cost": 125.0,
+        "status": "success",
+        "type": "rent"
+    }
 ]

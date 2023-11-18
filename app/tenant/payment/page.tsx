@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
-import { PSchema } from "./data/schema";
+import { PSchema } from "@/types/Payment";
 import { PaymentCard } from "@/components/PaymentCard";
-import { Payment } from "./data/schema";
+import { Payment } from "@/types/Payment";
 import { getData } from "./dataRetrieval";
 import { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
