@@ -20,8 +20,8 @@ import AuthButton from "@/components/AuthButton";
 const cookieStore = cookies();
 const supabase = createClient(cookieStore);
 
-async function getVisitors(id: string | undefined): Promise<Visitor[]> {
-  const { data, error } = await supabase.rpc("get_tenant_visitors", {tenant_id: id })
+async function getVisitors(id: string | undefined): Promise<Visitor[] | null> {
+  const { data, error } = await supabase.rpc('get_tenant_visitors', {tenant_id: id}).select();
   return data;
 }
 
@@ -29,9 +29,10 @@ export default async function AnnouncementPage() {
   
   let { data: {session} } = await supabase.auth.getSession();
   let { data, error } = await supabase.from("announcement").select("*");
-  console.log(data);
   let announcements = data;
+  console.log(session?.user?.id)
   let visitors = await getVisitors(session?.user?.id);
+  console.log(visitors)
 
   return (
     <>
@@ -47,7 +48,7 @@ export default async function AnnouncementPage() {
           <NotificationCard notifications={announcements} />
         </TabsContent>
         <TabsContent value="visitors" className="mx-auto space-y-4">
-          <VisitorCard visitors={visitors} />
+          <VisitorCard visitors={visitors?visitors:[]} />
         </TabsContent>
       </Tabs>
     </>
