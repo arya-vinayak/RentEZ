@@ -18,18 +18,35 @@ async function getTasks() {
 }
 
 export default function TasksPage() {
-  // const supabase = createClient();
-  // const getTasks = async () => {
-  //   const { data: {session} } = await supabase.auth.getSession();
-  //   // console.log(session?.user?.id)
-  //   const { data, error } = await supabase.rpc('get_payment', {userid: session?.user?.id}).select('*');
-  //   // console.log(data)
-  //   return data;
-  // }
-  const [tasks, setTasks] = useState<Payment[] | null>([]);
+  const supabase = createClient();
+  const getId = async () => {
+    const { data: {session} } = await supabase.auth.getSession();
+    // console.log(session?.user?.id)
+    return session?.user?.id;
+  }
+  const getTasks = async () => {
+    // const { data: {session} } = await supabase.auth.getSession();
+    // console.log(session?.user?.id)
+    const id = await getId();
+    const { data, error } = await supabase.rpc('get_payment', {userid: id}).select('*');
+    console.log(data)
+    return data;
+  }
 
+  const getTotal = async () => {
+    // const { data: {session} } = await supabase.auth.getSession();
+    // console.log(session?.user?.id)
+    const id = await getId();
+    const { data, error } = await supabase.rpc('get_owner_pending_rents', {userid: id}).select('*');
+    console.log(data)
+    return data;
+  }
+
+  const [tasks, setTasks] = useState<Payment[] | null>([]);
+  const [total, setTotal] = useState<number | null>(null);
   useEffect(() => {
     getTasks().then((tasks) => setTasks(tasks));
+    getTotal()
   }, []);
 
   const columns: ColumnDef<Payment>[] = [
@@ -147,7 +164,9 @@ export default function TasksPage() {
               Here&apos;s a list of Payments!
             </p>
           </div>
-          <div className="flex items-center space-x-2"></div>
+          <div className="flex items-center justify-center space-x-2">
+            <p className="font-sm">Total Pending Amount: </p>
+          </div>
         </div>
         <DataTable data={tasks ? tasks : []} columns={columns} setTasks={setTasks}/>
       </div>
