@@ -150,7 +150,13 @@ export default function TasksPage() {
       cell: ({ row }) => <DataTableRowActions row={row} />,
     },
   ];
-
+  const updatePayments = async(id: string) => {
+    const { data, error } = await supabase.from("payments").update({payment_status: "success"}).eq("payment_id", id);
+    console.log(data)
+    if (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <>
@@ -168,7 +174,7 @@ export default function TasksPage() {
             <p className="font-sm">Total Pending Amount: </p>
           </div>
         </div>
-        <DataTable data={tasks ? tasks : []} columns={columns} setTasks={setTasks}/>
+        <DataTable data={tasks ? tasks : []} columns={columns} setTasks={setTasks} updateTasks={updatePayments}/>
       </div>
     </>
   );

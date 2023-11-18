@@ -26,10 +26,40 @@ export default function TasksPage() {
   //   // console.log(data)
   //   return data;
   // }
-  const [tasks, setTasks] = useState<Payment[] | null>([]);
+  // const [tasks, setTasks] = useState<Payment[] | null>([]);
 
+  // useEffect(() => {
+  //   getTasks().then((tasks) => setTasks(tasks));
+  // }, []);
+  const supabase = createClient();
+  const getId = async () => {
+    const { data: {session} } = await supabase.auth.getSession();
+    // console.log(session?.user?.id)
+    return session?.user?.id;
+  }
+  const getTasks = async () => {
+    // const { data: {session} } = await supabase.auth.getSession();
+    // console.log(session?.user?.id)
+    const id = await getId();
+    const { data, error } = await supabase.rpc('get_payment', {userid: id}).select('*');
+    console.log(data)
+    return data;
+  }
+
+  const getTotal = async () => {
+    // const { data: {session} } = await supabase.auth.getSession();
+    // console.log(session?.user?.id)
+    const id = await getId();
+    const { data, error } = await supabase.rpc('get_owner_pending_rents', {userid: id}).select('*');
+    console.log(data)
+    return data;
+  }
+
+  const [tasks, setTasks] = useState<Payment[] | null>([]);
+  const [total, setTotal] = useState<number | null>(null);
   useEffect(() => {
     getTasks().then((tasks) => setTasks(tasks));
+    getTotal()
   }, []);
 
   const columns: ColumnDef<Payment>[] = [
@@ -133,7 +163,13 @@ export default function TasksPage() {
       cell: ({ row }) => <DataTableRowActions row={row} />,
     },
   ];
-
+  const updatePayments = async (id: string) => {
+    const { data, error } = await supabase.from("payments").update({payment_status: "success"}).eq("payment_id", id);
+    console.log(data)
+    if (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <>
@@ -149,8 +185,8 @@ export default function TasksPage() {
           </div>
           <div className="flex items-center space-x-2"></div>
         </div>
-        <DataTable data={tasks ? tasks : []} columns={columns} setTasks={setTasks}/>
-        <PaymentCard payments={tasks ? tasks : []} setTasks={setTasks} />
+        <DataTable data={tasks ? tasks : []} columns={columns} setTasks={setTasks} updateTasks={updatePayments}/>
+        <PaymentCard payments={tasks ? tasks : []} setTasks={setTasks}/>
       </div>
     </>
   );
