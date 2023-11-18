@@ -107,9 +107,13 @@ export function MaintenanceCard({ setTasks }: PaymentCardProps) {
                           type="number"
                           placeholder="Cost"
                           {...field}
-                          onChange={(event) =>
-                            field.onChange(+event.target.value)
-                          }
+                          min={0}
+                          onChange={(e) => {
+                            // Convert the input value to a number
+                            const numericValue = parseFloat(e.target.value);
+                            // Set the numeric value to the form field
+                            field.onChange(numericValue);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
