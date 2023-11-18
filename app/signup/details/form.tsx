@@ -51,25 +51,11 @@ export function TenantSignupForm() {
     },
   });
 
-  // Define your form submit handler
   const onSubmit = async ({ name, username, contactno, dob, role, flatNo }: any) => {
     const supabase = createClient();
     const { data: { session }} = await supabase.auth.getSession();
     const user = session?.user;
-    // Handle form submission here, e.g., send the data to the server
-    // covert date to yyyy-mm-dd format
-    // data.dob = new Date(data.dob).toISOString();
-    // const name = formdata.get("name") as string;
-    // const username = formdata.get("username") as string;
-    // const contactno = formdata.get("contactno") as string;
-    // const dob = formdata.get("dob") as string;
-    // const role = formdata.get("role") as string;
-    // const flatNo = formdata.get("flatNo") as string;
-    // console.log(formdata);
-    // const dob = formdata.get("dob") as string;
     const id = user?.id as string;
-    // console.log(formdata.dob)
-    // console.log(name, username, contactno, dob, role, flatNo);
     
     const { error } = await supabase.from("users").insert({id: id, name: name, username: username, contactno: contactno, dob: dob, role: role, flatNo: flatNo});
     if (error) {

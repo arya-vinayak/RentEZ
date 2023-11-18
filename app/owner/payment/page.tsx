@@ -8,14 +8,18 @@ import { Payment } from "@/types/Payment";
 import { getData } from "./dataRetrieval";
 import { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-
-async function getTasks() {
-  const data = await getData();
-  return data;
-}
+import { createClient } from "@/utils/supabase/client";
 
 export default function TasksPage() {
-  const [tasks, setTasks] = useState<Payment[]>([]);
+  const supabase = createClient();
+  const getTasks = async () => {
+    const { data: {session} } = await supabase.auth.getSession();
+    console.log(session?.user?.id)
+    const { data, error } = await supabase.rpc('get_payment', {userid: session?.user?.id}).select('*');
+    console.log(data)
+    return data;
+  }
+  const [tasks, setTasks] = useState<Payment[] | null>([]);
 
   useEffect(() => {
     getTasks().then((tasks) => setTasks(tasks));
@@ -35,8 +39,8 @@ export default function TasksPage() {
           </div>
           <div className="flex items-center space-x-2"></div>
         </div>
-        <DataTable data={tasks} columns={columns} />
-        <PaymentCard payments={tasks} setTasks={setTasks} />
+        <DataTable data={tasks?tasks:[]} columns={columns} />
+        <PaymentCard payments={tasks?tasks:[]} setTasks={setTasks} />
       </div>
     </>
   );

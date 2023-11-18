@@ -30,10 +30,8 @@ export default async function AnnouncementPage() {
   let { data: {session} } = await supabase.auth.getSession();
   let { data, error } = await supabase.from("announcement").select("*");
   let announcements = data;
-  console.log(session?.user?.id)
+  // console.log(session?.user?.id)
   let visitors = await getVisitors(session?.user?.id);
-  console.log(visitors)
-
   return (
     <>
       <Breadcrumb pageName="Home" >

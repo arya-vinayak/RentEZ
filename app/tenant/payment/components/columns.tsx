@@ -43,19 +43,19 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date" />
+      <DataTableColumnHeader column={column} title="Payment ID" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "owner_id",
+    accessorKey: "owner",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Owner ID" />
+      <DataTableColumnHeader column={column} title="Owner" />
     ),
     cell: ({ row }) => (
-      <div className="w-[80px]">{row.getValue("owner_id")}</div>
+      <div className="w-[80px]">{row.getValue("owner")}</div>
     ),
     enableSorting: false,
     enableHiding: false,
