@@ -56,8 +56,8 @@ export function TenantSignupForm() {
     const { data: { session }} = await supabase.auth.getSession();
     const user = session?.user;
     const id = user?.id as string;
-    
-    const { error } = await supabase.from("users").insert({id: id, name: name, username: username, contactno: contactno, dob: dob, role: role, flatNo: flatNo});
+    const profile_pic = user?.user_metadata?.avatar_url as string;
+    const { error } = await supabase.from("users").insert({id: id, name: name, username: username, contactno: contactno, dob: dob, role: role, flatNo: flatNo, profile_pic: profile_pic});
     if (error) {
       setErr((prevErr: string) => error.message);
     }

@@ -15,6 +15,8 @@ export default async function Index() {
   let role,
     username = null;
   if (session) {
+    console.log(session)
+    console.log(session?.user)
     const uid = session?.user?.id;
     const { data } = await supabase
       .from("users")

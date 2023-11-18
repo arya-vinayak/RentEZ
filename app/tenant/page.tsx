@@ -21,7 +21,7 @@ const cookieStore = cookies();
 const supabase = createClient(cookieStore);
 
 async function getVisitors(id: string | undefined): Promise<Visitor[] | null> {
-  const { data, error } = await supabase.rpc('get_tenant_visitors', {tenant_id: id}).select();
+  const { data, error } = await supabase.rpc('get_tenant_visitors', {tenant_id: id}).select("*");
   return data;
 }
 
