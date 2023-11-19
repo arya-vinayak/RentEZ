@@ -74,7 +74,7 @@ export default function TasksPage() {
   
   useEffect(() => {
     getTasks().then((tasks) => setTasks(tasks));
-    getTotal()
+    // getTotal()
   }, []);
 
 

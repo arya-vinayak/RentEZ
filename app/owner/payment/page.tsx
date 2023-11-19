@@ -46,7 +46,7 @@ export default function TasksPage() {
   const [total, setTotal] = useState<number | null>(null);
   useEffect(() => {
     getTasks().then((tasks) => setTasks(tasks));
-    getTotal()
+    // getTotal()
   }, []);
 
   const columns: ColumnDef<Payment>[] = [
