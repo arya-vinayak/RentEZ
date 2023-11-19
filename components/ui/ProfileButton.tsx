@@ -10,14 +10,14 @@ import {
 import { MouseEventHandler } from "react";
   
 
-  const ProfileButton = (props: { handleProfileClick: MouseEventHandler<HTMLDivElement> | undefined; handleSettingsClick: MouseEventHandler<HTMLDivElement> | undefined; }) => {
+  const ProfileButton = (props: { handleProfileClick: MouseEventHandler<HTMLDivElement> | undefined; handleSettingsClick: MouseEventHandler<HTMLDivElement> | undefined; avatarURL: string | null }) => {
     
 
     return (
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar>
-            <AvatarImage src="/img/shadcn.jpg" />
+            <AvatarImage src={props.avatarURL ?? "/img/shadcn.jpg"}/>
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>

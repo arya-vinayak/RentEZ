@@ -73,8 +73,9 @@ const sidebarItmes: SideNavItemType[] = [
   },
 ];
 
-const headerProps: Header1Props = {
+let headerProps: Header1Props = {
   userType: "owner",
+  avatarURL: null
 };
 
 export default function RootLayout({
@@ -92,7 +93,7 @@ export default function RootLayout({
     if (!session?.user) {
       return router.push("/unauthorised");
     }
-
+    headerProps.avatarURL = session?.user?.user_metadata?.avatar_url;
     setUser(session?.user as userType);
   };
   useEffect(() => {
