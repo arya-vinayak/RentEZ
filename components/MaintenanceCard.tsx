@@ -34,7 +34,7 @@ type PaymentCardProps = {
 export function MaintenanceCard({ setTasks,owner }: PaymentCardProps) {
   const defaultValues = {
     payment_id: "",
-    flat_number: "",
+    flat_number: NaN,
     date: new Date().toISOString().slice(0, 10),
     description: "",
     cost: 0,
@@ -123,9 +123,8 @@ export function MaintenanceCard({ setTasks,owner }: PaymentCardProps) {
                     </FormItem>
                   )}
                 />
-                {
-                  owner && (
-                    <FormField
+                {owner && (
+                  <FormField
                     control={register.control}
                     name="flat_number"
                     render={({ field }) => (
@@ -133,17 +132,23 @@ export function MaintenanceCard({ setTasks,owner }: PaymentCardProps) {
                         <FormLabel>Flat Number</FormLabel>
                         <FormControl>
                           <Input
-                            type="text"
+                            type="number"
                             placeholder="Flat Number"
                             {...field}
+                            min={0}
+                            onChange={(e) => {
+                              // Convert the input value to a number
+                              const numericValue = parseFloat(e.target.value);
+                              // Set the numeric value to the form field
+                              field.onChange(numericValue);
+                            }}
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  )
-                }
+                )}
 
                 <DialogFooter>
                   <Button type="submit">Add Request</Button>

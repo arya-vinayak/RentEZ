@@ -31,12 +31,18 @@ export default function TasksPage() {
   // useEffect(() => {
   //   getTasks().then((tasks) => setTasks(tasks));
   // }, []);
+
+  const [tasks, setTasks] = useState<Payment[] | null>([]);
+  const [total, setTotal] = useState<number | null>(null);
   const supabase = createClient();
+
+
   const getId = async () => {
     const { data: {session} } = await supabase.auth.getSession();
     // console.log(session?.user?.id)
     return session?.user?.id;
   }
+
   const getTasks = async () => {
     // const { data: {session} } = await supabase.auth.getSession();
     // console.log(session?.user?.id)
@@ -51,16 +57,27 @@ export default function TasksPage() {
     // console.log(session?.user?.id)
     const id = await getId();
     const { data, error } = await supabase.rpc('get_owner_pending_rents', {userid: id}).select('*');
-    console.log(data)
+    //console.log(data)
     return data;
   }
 
-  const [tasks, setTasks] = useState<Payment[] | null>([]);
-  const [total, setTotal] = useState<number | null>(null);
+  const updatePayments = async (id: string) => {
+    const { data, error } = await supabase
+      .from("payments")
+      .update({ payment_status: "success" })
+      .eq("payment_id", id);
+    console.log(data);
+    if (error) {
+      console.error(error);
+    }
+  };
+  
   useEffect(() => {
     getTasks().then((tasks) => setTasks(tasks));
     getTotal()
   }, []);
+
+
 
   const columns: ColumnDef<Payment>[] = [
     {
@@ -163,13 +180,7 @@ export default function TasksPage() {
       cell: ({ row }) => <DataTableRowActions row={row} />,
     },
   ];
-  const updatePayments = async (id: string) => {
-    const { data, error } = await supabase.from("payments").update({payment_status: "success"}).eq("payment_id", id);
-    console.log(data)
-    if (error) {
-      console.error(error)
-    }
-  }
+  
 
   return (
     <>

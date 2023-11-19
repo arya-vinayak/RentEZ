@@ -68,8 +68,8 @@ export function PaymentCard({ payments,setTasks }: PaymentCardProps) {
    
     const newPayment = {
       id: data.id,
-      tenant_id: data.tenant_id,
-      owner_id: data.owner_id,
+      tenant: data.tenant,
+      owner: data.owner,
       date: data.date,
       cost: data.cost,
       status: data.status,
