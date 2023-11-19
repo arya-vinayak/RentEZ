@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -14,7 +14,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -23,31 +23,32 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
-import { DataTablePagination } from "./data-table-pagination"
-import { DataTableToolbar } from "./data-table-toolbar"
-import { Button } from "@/components/ui/button"
+import { DataTablePagination } from "./data-table-pagination";
+import { DataTableToolbar } from "./data-table-toolbar";
+import { Button } from "@/components/ui/button";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[],
-  setTasks ?: any
-  updateTasks ?: any
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  setTasks?: any;
+  updateTasks?: any;
+}
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   setTasks,
-  updateTasks
+  updateTasks,
 }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({})
+  const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+    React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     data,
@@ -69,28 +70,23 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  })
-
-  const handleOnClick = () => {
-  const selectedTaskIndices = Object.keys(rowSelection)
-    .filter((index) => rowSelection[index as keyof typeof rowSelection])
-    .map((index) => parseInt(index, 10));
-
-
-  const updatedTasks = data.map((task, index) => {
-    if (selectedTaskIndices.includes(index)) {
-      // console.log("task", task)
-      // console.log("task id", task.id);
-      updateTasks(task.id);
-      return { ...task, status: "success" };
-    }
-    return task;
   });
 
-  setTasks(updatedTasks);
-   
+  const handleOnClick = () => {
+    const selectedTaskIndices = Object.keys(rowSelection)
+      .filter((index) => rowSelection[index as keyof typeof rowSelection])
+      .map((index) => parseInt(index, 10));
 
-  }
+    const updatedTasks = data.map((task, index) => {
+      if (selectedTaskIndices.includes(index)) {
+        updateTasks(task.id);
+        return { ...task, status: "success" };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  };
 
   return (
     <div className="space-y-4">
