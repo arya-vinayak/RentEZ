@@ -1,7 +1,7 @@
 [
   {
     "payment_id": "PAYMENT-1",
-    "flat_number": "101",
+    "flat_number": 101,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
@@ -10,7 +10,7 @@
   },
   {
     "payment_id": "PAYMENT-2",
-    "flat_number": "102",
+    "flat_number": 102,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
@@ -19,7 +19,7 @@
   },
   {
     "payment_id": "PAYMENT-3",
-    "flat_number": "103",
+    "flat_number": 103,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
@@ -28,7 +28,7 @@
   },
   {
     "payment_id": "PAYMENT-4",
-    "flat_number": "104",
+    "flat_number": 104,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
@@ -37,7 +37,7 @@
   },
   {
     "payment_id": "PAYMENT-5",
-    "flat_number": "105",
+    "flat_number": 105,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
@@ -46,7 +46,7 @@
   },
   {
     "payment_id": "PAYMENT-6",
-    "flat_number": "106",
+    "flat_number": 106,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
@@ -55,7 +55,7 @@
   },
   {
     "payment_id": "PAYMENT-7",
-    "flat_number": "107",
+    "flat_number": 107,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
@@ -64,7 +64,7 @@
   },
   {
     "payment_id": "PAYMENT-8",
-    "flat_number": "108",
+    "flat_number": 108,
     "date": "2023-11-16",
     "cost": 150.0,
     "description": "Maintenance #16",
