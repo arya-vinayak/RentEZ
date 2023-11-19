@@ -6,17 +6,27 @@ import { Maintain } from "@/types/Maintenance";
 import { getData } from "./dataRetrieval";
 import { useEffect, useState } from "react";
 import { MaintenanceCard } from "@/components/MaintenanceCard";
-
-async function getTasks() {
-  const data = await getData();
-  return data;
-}
+import { createClient } from "@/utils/supabase/client";
+// async function getTasks() {
+//   const data = await getData();
+//   return data;
+// }
 
 export default function TasksPage() {
+  const supabase = createClient();
+  const getTasks = async () => {
+    const { data: {session}} = await supabase.auth.getSession();
+    const { data, error } = await supabase.rpc('get_maintenances',{userid: session?.user.id}).select('*');
+    if (error) {
+      console.error(error);
+    }
+    // console.log(data);
+    return data;
+  };
   const [tasks, setTasks] = useState<Maintain[]>([]);
 
   useEffect(() => {
-    getTasks().then((tasks) => setTasks(tasks));
+    getTasks().then((tasks) => setTasks(tasks ? tasks : []));
   }, []);
 
   return (

@@ -6,9 +6,8 @@ import { Sun, Moon } from "lucide-react";
 import ProfileButton from "./ui/ProfileButton";
 
 import { Header1Props } from "@/types/headerProps";
-import Logo from "@/public/rentez.svg";
 
-const Header1 = ({ userType }: Header1Props) => {
+const Header1 = ({ userType, avatarURL }: Header1Props) => {
 
   const router = useRouter();
   const handleProfileClick = () => {
@@ -31,6 +30,7 @@ const Header1 = ({ userType }: Header1Props) => {
             <ProfileButton
               handleProfileClick={handleProfileClick}
               handleSettingsClick={handleSettingsClick}
+              avatarURL={avatarURL}
             />
           </div>
         </div>
