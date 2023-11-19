@@ -31,37 +31,11 @@ const sidebarItmes: SideNavItemType[] = [
   },
   {
     icon: {
-      icon: <PiNotepad />,
-      fillIcon: <PiNotepadFill />,
-    },
-    label: "Payments",
-    href: "/admin/payment",
-  },
-
-  {
-    icon: {
       icon: <HiOutlineUsers />,
       fillIcon: <HiUsers />,
     },
     label: "Maintenance",
     href: "/admin/maintenance",
-  },
-
-  {
-    icon: {
-      icon: <BiUser />,
-      fillIcon: <BiSolidUser />,
-    },
-    label: "Profile ",
-    href: "/admin/profile",
-  },
-  {
-    icon: {
-      icon: <VscSettingsGear />,
-      fillIcon: <VscSettingsGear />,
-    },
-    label: "Settings",
-    href: "/admin/settings",
   },
   {
     icon: {

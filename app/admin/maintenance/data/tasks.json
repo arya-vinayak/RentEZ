@@ -1,122 +1,74 @@
 [
   {
-    "flat_number": "A-203",
-    "date": "2023-11-01",
-    "cost": 250.75,
-    "description": "AUTEM VOLUPTAS AUT PORRO",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "pending"
-  },
-  {
-    "flat_number": "A-204",
-    "date": "2023-10-31",
-    "cost": 158.45,
-    "description": "TEMPORIBUS VOLUPTATE EA FUGIAT",
+    "payment_id": "PAYMENT-1",
+    "flat_number": "101",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
     "maintenance_status": "todo",
-    "maintenance_payment_status": "success"
+    "payment_status": "pending"
   },
   {
-    "flat_number": "A-205",
-    "date": "2023-10-30",
-    "cost": 356.32,
-    "description": "DUCIMUS VOLUPTAS QUI LABORIOSAM",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "success"
-  },
-  {
-    "flat_number": "A-206",
-    "date": "2023-10-29",
-    "cost": 421.2,
-    "description": "EXERCITATIONEM QUASI QUIS RERUM",
+    "payment_id": "PAYMENT-2",
+    "flat_number": "102",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
     "maintenance_status": "todo",
-    "maintenance_payment_status": "pending"
+    "payment_status": "pending"
   },
   {
-    "flat_number": "A-207",
-    "date": "2023-10-28",
-    "cost": 125.89,
-    "description": "QUIS CULPA AT IPSA",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "pending"
-  },
-  {
-    "flat_number": "A-208",
-    "date": "2023-10-27",
-    "cost": 305.14,
-    "description": "ADIPISCI TEMPORA EXERCITATIONEM QUOD",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "pending"
-  },
-  {
-    "flat_number": "A-209",
-    "date": "2023-10-26",
-    "cost": 199.3,
-    "description": "LABORUM SIMILIQUE AD SED",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "success"
-  },
-  {
-    "flat_number": "A-210",
-    "date": "2023-10-25",
-    "cost": 301.55,
-    "description": "NISI REPREHENDERIT AB EXERCITATIONEM",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "pending"
-  },
-  {
-    "flat_number": "A-211",
-    "date": "2023-10-24",
-    "cost": 187.75,
-    "description": "CUPIDITATE AMET EX ET",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "success"
-  },
-  {
-    "flat_number": "A-212",
-    "date": "2023-10-23",
-    "cost": 396.6,
-    "description": "VOLUPTATEM VOLUPTATUM ID FACERE",
+    "payment_id": "PAYMENT-3",
+    "flat_number": "103",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
     "maintenance_status": "todo",
-    "maintenance_payment_status": "success"
+    "payment_status": "pending"
   },
   {
-    "flat_number": "A-213",
-    "date": "2023-10-22",
-    "cost": 150.2,
-    "description": "IPSAM MAIORES AUTEM",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "pending"
-  },
-  {
-    "flat_number": "A-214",
-    "date": "2023-10-21",
-    "cost": 275.4,
-    "description": "EVENIET FACILIS IPSA QUOD",
+    "payment_id": "PAYMENT-4",
+    "flat_number": "104",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
     "maintenance_status": "todo",
-    "maintenance_payment_status": "pending"
+    "payment_status": "pending"
   },
   {
-    "flat_number": "A-215",
-    "date": "2023-10-20",
-    "cost": 180.9,
-    "description": "NOBIS PLACEAT AUT NATUS",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "success"
-  },
-  {
-    "flat_number": "A-216",
-    "date": "2023-10-19",
-    "cost": 310.7,
-    "description": "ERROR BEATAE IPSAM",
-    "maintenance_status": "done",
-    "maintenance_payment_status": "pending"
-  },
-  {
-    "flat_number": "A-217",
-    "date": "2023-10-18",
-    "cost": 195.3,
-    "description": "NULLA EST IPSUM CULPA",
+    "payment_id": "PAYMENT-5",
+    "flat_number": "105",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
     "maintenance_status": "todo",
-    "maintenance_payment_status": "success"
+    "payment_status": "success"
+  },
+  {
+    "payment_id": "PAYMENT-6",
+    "flat_number": "106",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
+    "maintenance_status": "todo",
+    "payment_status": "pending"
+  },
+  {
+    "payment_id": "PAYMENT-7",
+    "flat_number": "107",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
+    "maintenance_status": "todo",
+    "payment_status": "pending"
+  },
+  {
+    "payment_id": "PAYMENT-8",
+    "flat_number": "108",
+    "date": "2023-11-16",
+    "cost": 150.0,
+    "description": "Maintenance #16",
+    "maintenance_status": "todo",
+    "payment_status": "pending"
   }
 ]

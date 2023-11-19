@@ -37,9 +37,9 @@ export function DataTableToolbar<TData>({
             options={statuses}
           />
         )}
-        {table.getColumn("maintenance_payment_status") && (
+        {table.getColumn("payment_status") && (
           <DataTableFacetedFilter
-            column={table.getColumn("maintenance_payment_status")}
+            column={table.getColumn("payment_status")}
             title="Payment Status"
             options={pstatuses}
           />

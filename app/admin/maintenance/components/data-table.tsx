@@ -33,7 +33,7 @@ import { Maintain } from "@/types/Maintenance"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  setTasks : React.Dispatch<React.SetStateAction<Maintain[]>>,
+  setTasks?: any,
 }
 
 export function DataTable<TData, TValue>({
@@ -50,20 +50,18 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([])
 
   const updateMaintenanceStatus = () => {
-  //   //updating the maintenance status for all the selected tasks
-    const selectedTasks = Object.keys(rowSelection);
-    console.log(selectedTasks);
-  //   const updatedTasks = data.map((task) => {
-  //     if (selectedTasks.includes(String(task.id))) {
-  //       return { ...task, maintenance_status: "done" };
-  //     }
-  //     return task;
-  //   });
+  const selectedTaskIndices = Object.keys(rowSelection)
+    .filter((index) => rowSelection[index as keyof typeof rowSelection])
+    .map((index) => parseInt(index, 10));
 
-  //   setTasks(updatedTasks);
-  // };
-    
-  //   setTasks(updatedTasks);
+    const updatedTasks = data.map((task, index) => {
+      if (selectedTaskIndices.includes(index)) {
+        return { ...task, maintenance_status: "done" };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
     
    };
 
