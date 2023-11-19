@@ -32,13 +32,15 @@ import { Button } from "@/components/ui/button"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  setTasks ?: any
+  setTasks ?: any,
+  updateTasks ?: any
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-  setTasks
+  setTasks,
+  updateTasks
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
@@ -77,6 +79,7 @@ export function DataTable<TData, TValue>({
 
   const updatedTasks = data.map((task, index) => {
     if (selectedTaskIndices.includes(index)) {
+      updateTasks(task.id);
       return { ...task, status: "success" };
     }
     return task;
