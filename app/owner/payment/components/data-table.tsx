@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import {
   ColumnDef,
@@ -35,6 +34,8 @@ interface DataTableProps<TData, TValue> {
   setTasks?: any;
   updateTasks?: any;
 }
+
+import { Payment } from "@/types/Payment";
 
 export function DataTable<TData, TValue>({
   columns,
@@ -79,7 +80,7 @@ export function DataTable<TData, TValue>({
 
     const updatedTasks = data.map((task, index) => {
       if (selectedTaskIndices.includes(index)) {
-        updateTasks(task.id);
+        updateTasks((task as Payment).id);
         return { ...task, status: "success" };
       }
       return task;

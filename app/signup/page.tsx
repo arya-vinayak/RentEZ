@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import LogInForm from "@/components/LogInForm";
 import { FcGoogle } from "react-icons/fc";
 import Anime from "../../components/Anime";
+import { Button } from "@/components/ui/button";
 
 export default function Login({
   searchParams,
@@ -59,9 +60,9 @@ export default function Login({
 
   return (
     <>
-      <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <div className="container relative hidden flex-col items-center justify-center h-screen md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Anime />
-        <div className="p-6 m-3">
+        <div className="p-6 m-3 flex flex-col items-center justify-center">
           <LogInForm
             text="Signup"
             signIn={signUp}
@@ -79,6 +80,11 @@ export default function Login({
               </div>
             </button>
           </form>
+        </div>
+        <div className="absolute top-4 right-4 md:right-8 md:top-8">
+          <Link href="/login">
+            <Button>Log In</Button>
+          </Link>
         </div>
       </div>
     </>

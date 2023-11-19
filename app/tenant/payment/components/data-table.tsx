@@ -28,6 +28,7 @@ import {
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
 import { Button } from "@/components/ui/button"
+import { Payment } from "@/types/Payment"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -79,7 +80,9 @@ export function DataTable<TData, TValue>({
 
   const updatedTasks = data.map((task, index) => {
     if (selectedTaskIndices.includes(index)) {
-      updateTasks(task.id);
+      // Assuming 'TData' has the 'id' property
+      const taskId = (task as Payment).id;
+      updateTasks(taskId);
       return { ...task, status: "success" };
     }
     return task;

@@ -7,6 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { TenantSignupForm } from "./form";
 import signupAnime from "@/public/animations/signup.json";
 import Lottie from "lottie-react";
+import { Button } from "@/components/ui/button";
 
 
 // export const metadata: Metadata = {
@@ -19,21 +20,11 @@ import Lottie from "lottie-react";
 export default function AuthenticationPage() {
   return (
     <>
-      <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <Link
-          href="/login"
-          className={cn(
-            buttonVariants({ variant: "ghost" }),
-            "absolute right-4 top-4 md:right-8 md:top-8"
-          )}
-        >
-          Login
-        </Link>
+      <div className="container relative flex-col items-center justify-center h-screen md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
             <Link href={"/"}>
-              {/* <SiGooglehome className="text-4xl" /> */}
               <p className="font-bold text-5xl">
                 Rent{" "}
                 <span className="font-bold text-green-400 text-5xl">EZ</span>
@@ -41,7 +32,7 @@ export default function AuthenticationPage() {
             </Link>
           </div>
           <div className="relative z-20 mt-auto">
-          <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 col-span-4">
+            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 col-span-4">
               <Lottie
                 animationData={signupAnime}
                 style={{ height: 600, width: 600 }}
@@ -50,7 +41,9 @@ export default function AuthenticationPage() {
             </div>
           </div>
         </div>
-        <div className="lg:p-8">
+        {/* first grid */}
+
+        <div className="p-6 m-3 flex flex-col items-center justify-center">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
@@ -62,6 +55,12 @@ export default function AuthenticationPage() {
             </div>
             <TenantSignupForm />
           </div>
+        </div>
+        {/* second grid */}
+        <div className="absolute top-4 right-4 md:right-8 md:top-8">
+          <Link href="/login">
+            <Button>Log In</Button>
+          </Link>
         </div>
       </div>
     </>
