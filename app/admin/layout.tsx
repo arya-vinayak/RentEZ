@@ -71,7 +71,6 @@ const sidebarItmes: SideNavItemType[] = [
 const headerProps: Header1Props = {
   avatarURL: null,
   userType: "owner",
-  avatarURL:"null",
 };
 
 export default function RootLayout({
