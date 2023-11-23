@@ -24,6 +24,7 @@ import { SlDocs } from "react-icons/sl";
 import { MdCleaningServices } from "react-icons/md";
 
 
+
 const sidebarItmes: SideNavItemType[] = [
   {
     icon: {
@@ -62,7 +63,7 @@ const sidebarItmes: SideNavItemType[] = [
       icon: <GoBroadcast/>,
       fillIcon: <GoBroadcast/>,
     },
-    label: "Announcement Page",
+    label: "Announcements",
     href: "/admin/announcement",
   },
 ];

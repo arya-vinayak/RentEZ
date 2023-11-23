@@ -19,6 +19,7 @@ import { useEffect, useContext, useState, createContext } from "react";
 import UserContext from "@/contexts/userContext"
 import { set } from "zod";
 import { MdCleaningServices } from "react-icons/md";
+import { Wallet } from "lucide-react";
 
 const sidebarItmes: SideNavItemType[] = [
   {
@@ -31,8 +32,8 @@ const sidebarItmes: SideNavItemType[] = [
   },
   {
     icon: {
-      icon: <PiNotepad />,
-      fillIcon: <PiNotepadFill />,
+      icon: <Wallet />,
+      fillIcon: <Wallet />,
     },
     label: "Payments",
     href: "/tenant/payment",
