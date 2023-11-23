@@ -19,6 +19,10 @@ import { LiaFileContractSolid } from "react-icons/lia";
 import UserContext from "@/contexts/userContext"
 import { userType } from "@/types/user";
 import { useState } from "react";
+import { GoBroadcast } from "react-icons/go";
+import { SlDocs } from "react-icons/sl";
+import { MdCleaningServices } from "react-icons/md";
+
 
 const sidebarItmes: SideNavItemType[] = [
   {
@@ -31,32 +35,32 @@ const sidebarItmes: SideNavItemType[] = [
   },
   {
     icon: {
-      icon: <HiOutlineUsers />,
-      fillIcon: <HiUsers />,
+      icon: <MdCleaningServices />,
+      fillIcon: <MdCleaningServices />,
     },
     label: "Maintenance",
     href: "/admin/maintenance",
   },
   {
     icon: {
-      icon: <LiaFileContractSolid />,
-      fillIcon: <FaFileContract />,
+      icon: <SlDocs/>,
+      fillIcon: <SlDocs/>,
     },
     label: "Contracts",
     href: "/admin/contract",
   },
   {
     icon: {
-      icon: <SiGooglehome />,
-      fillIcon: <SiGooglehome />,
+      icon: <HiOutlineUsers />,
+      fillIcon: <HiUsers />,
     },
     label: "Visitor View",
     href: "/admin/visitorview",
   },
   {
     icon: {
-      icon: <SiGooglehome />,
-      fillIcon: <SiGooglehome />,
+      icon: <GoBroadcast/>,
+      fillIcon: <GoBroadcast/>,
     },
     label: "Announcement Page",
     href: "/admin/announcement",

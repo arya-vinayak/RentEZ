@@ -18,6 +18,7 @@ import { FaFileContract } from "react-icons/fa";
 import { LiaFileContractSolid } from "react-icons/lia";
 import { userType } from "@/types/user";
 import UserContext from "@/contexts/userContext"
+import { MdCleaningServices } from "react-icons/md";
 // import { User } from "lucide-react";
 
 const sidebarItmes: SideNavItemType[] = [
@@ -40,8 +41,8 @@ const sidebarItmes: SideNavItemType[] = [
 
   {
     icon: {
-      icon: <HiOutlineUsers />,
-      fillIcon: <HiUsers />,
+      icon: <MdCleaningServices />,
+      fillIcon: <MdCleaningServices />,
     },
     label: "Maintenance",
     href: "/owner/maintenance",
