@@ -8,6 +8,7 @@ import { TenantSignupForm } from "./form";
 import signupAnime from "@/public/animations/signup.json";
 import Lottie from "lottie-react";
 import { Button } from "@/components/ui/button";
+import Anime from "@/components/Anime";
 
 
 // export const metadata: Metadata = {
@@ -21,26 +22,7 @@ export default function AuthenticationPage() {
   return (
     <>
       <div className="container relative flex-col items-center justify-center h-screen md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-          <div className="absolute inset-0 bg-zinc-900" />
-          <div className="relative z-20 flex items-center text-lg font-medium">
-            <Link href={"/"}>
-              <p className="font-bold text-5xl">
-                Rent{" "}
-                <span className="font-bold text-green-400 text-5xl">EZ</span>
-              </p>
-            </Link>
-          </div>
-          <div className="relative z-20 mt-auto">
-            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 col-span-4">
-              <Lottie
-                animationData={signupAnime}
-                style={{ height: 600, width: 600 }}
-                loop={true}
-              />
-            </div>
-          </div>
-        </div>
+      <Anime />
         {/* first grid */}
 
         <div className="p-6 m-3 flex flex-col items-center justify-center">
