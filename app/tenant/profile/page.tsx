@@ -16,8 +16,6 @@ function isProfile(profile: any): profile is Profile {
   );
 }
 
-
-
 async function getProfileDetails(): Promise<{profile: Profile, role: string}> {
   'use server'
   const cookieStore = cookies();
