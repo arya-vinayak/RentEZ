@@ -48,7 +48,6 @@ export function TenantForm() {
   // Define your form submit handler
   const onSubmit = (data: any) => {
     // Handle form submission here, e.g., send the data to the server
-    const dob = data.dob as Date;
     // data.set("dob", dob.toISOString());
     // console.log(dob.toString());
     console.log(data);
@@ -103,7 +102,7 @@ export function TenantForm() {
             <FormItem>
               <FormLabel>Date of Birth</FormLabel>
               <FormControl>
-                <Input type="date" {...field} />
+                <Input type="text" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
