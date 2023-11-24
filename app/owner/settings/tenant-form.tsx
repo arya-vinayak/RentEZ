@@ -24,7 +24,7 @@ const tenantFormSchema = z.object({
   contactNo: z.string().min(10, {
     message: "Contact number must be at least 10 characters.",
   }),
-  dob: z.date(),
+  dob: z.string(),
   password: z.string().min(6, {
     message: "Password must be at least 6 characters.",
   }),
@@ -38,7 +38,7 @@ export function TenantForm() {
       name: "",
       email: "",
       contactNo: "",
-      dob: new Date(),
+      dob:"",
       password: "",
     },
   });
@@ -98,7 +98,7 @@ export function TenantForm() {
             <FormItem>
               <FormLabel>Date of Birth</FormLabel>
               <FormControl>
-                <Input type="date" {...field} />
+                <Input type="text" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
