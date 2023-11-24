@@ -4,14 +4,14 @@ import Breadcrumb from "./Breadcrumbs/Breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Profile } from "@/types/Profile";
 
-export default function ProfileCard(tenantData: Profile) {
+export default function ProfileCard({ tenantData, role }: { tenantData: Profile; role: string }) {
   return (
     <>
       <Breadcrumb pageName="Profile" />
       <Card className="dark:bg-[20-14.3-4.1] text-[#FFFFFF]">
         <CardHeader>
           <CardTitle className="text-black dark:text-white">
-            Tenant Details
+            {role === "owner" ? "Owner" : "Tenant"} Profile
           </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-6">
