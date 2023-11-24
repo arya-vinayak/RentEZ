@@ -14,6 +14,8 @@ function isProfile(profile: any): profile is Profile {
   );
 }
 
+
+
 async function getProfileDetails(): Promise<Profile> {
   const data = await fs.readFile(
     path.join(process.cwd(), "/app/tenant/profile/data/profile.json")
