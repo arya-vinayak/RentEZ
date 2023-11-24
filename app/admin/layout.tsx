@@ -69,6 +69,7 @@ const sidebarItmes: SideNavItemType[] = [
 ];
 
 const headerProps: Header1Props = {
+  avatarURL: null,
   userType: "owner",
 };
 
